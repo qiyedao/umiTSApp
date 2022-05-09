@@ -20,6 +20,8 @@ export default {
     });
   },
   'GET /v1/user': mockjs.mock({
-    'list|100': [{ name: '@city', 'value|1-100': 50, 'type|0-2': 1 }],
+    'list|100': [
+      { 'rowKey|1-100': 50, name: '@city', 'value|1-100': 50, 'type|0-2': 1 },
+    ],
   }),
 };

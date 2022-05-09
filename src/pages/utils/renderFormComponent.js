@@ -1,12 +1,17 @@
 import { Select, Input, Form, Button, DatePicker } from 'antd';
 const typeList = ['select', 'input', 'search', 'rangepicker'];
 const { RangePicker } = DatePicker;
-export const renderFormItem = item => {
-  if (!typeList.includes(item.component)) return <div>组件类型有{typeList.join(',')}</div>;
+export const renderFormItem = (item) => {
   console.log('options', item);
 
+  if (!typeList.includes(item.component))
+    return <div>组件类型有{typeList.join(',')}</div>;
+
   if (item.component == 'select') {
-    if (item.value === undefined && (!item.options || item.options.length == 0)) {
+    if (
+      item.value === undefined &&
+      (!item.options || item.options.length == 0)
+    ) {
       delete item.value;
     }
     return (

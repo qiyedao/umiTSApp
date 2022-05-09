@@ -1,12 +1,17 @@
 import styles from './index.less';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 import { useState, useEffect, SetStateAction, useRef } from 'react';
 import ProTable from './components/ProTable';
+type IObject = {
+  [key: string | number]: any;
+};
 export default function IndexPage() {
   const [num, setNum] = useState<number>(0);
   const [list, setList] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [pageNo, setPageNo] = useState<number>(1);
+
+  const [params, setParams] = useState<IObject>({});
   const handleClick = (num: number) => {};
   useEffect(() => {
     fetch('/v1/user')
@@ -26,14 +31,44 @@ export default function IndexPage() {
       dataIndex: 'name',
       key: 'name',
       search: true,
-      formType: 'input',
+      component: 'input',
+      formStyle: {
+        width: '300px',
+      },
     },
     {
       title: 'val',
       dataIndex: 'value',
       key: 'value',
       search: true,
-      formType: 'select',
+      component: 'select',
+      formStyle: {
+        width: '300px',
+      },
+    },
+    {
+      title: '文档名称1',
+      dataIndex: 'name1',
+      key: 'name1',
+      search: true,
+      component: 'select',
+      options: [
+        { label: 1, value: 222 },
+        { label: 2, value: 22222 },
+      ],
+      formStyle: {
+        width: '300px',
+      },
+    },
+    {
+      title: 'val1',
+      dataIndex: 'value1',
+      key: 'value1',
+      search: true,
+      component: 'input',
+      formStyle: {
+        width: '300px',
+      },
     },
   ];
   const actionRef = useRef<any>(null);
@@ -111,19 +146,78 @@ export default function IndexPage() {
     });
   };
 
+  const renderFilter = () => {
+    let divList = [];
+    divList.push(
+      <div key={1} style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ minWidth: 100, textAlign: 'right' }}>
+          文档名称<span>:</span>
+        </div>
+        <Input
+          value={params.name ? params.name : ''}
+          onChange={(e) => {
+            actionRef.current.handleSetParams({
+              name: e.target.value,
+            });
+            setParams({
+              ...params,
+              name: e.target.value,
+            });
+          }}
+        />
+      </div>,
+    );
+    divList.push(
+      <div key={2} style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ minWidth: 100, textAlign: 'right' }}>
+          文档名称<span>:</span>
+        </div>
+        <Input
+          value={params.name2 ? params.name2 : ''}
+          onChange={(e) => {
+            actionRef.current.handleSetParams({
+              name2: e.target.value,
+            });
+            setParams({
+              ...params,
+              name2: e.target.value,
+            });
+          }}
+        />
+      </div>,
+    );
+    divList.push(
+      <div>
+        <Button
+          type="primary"
+          style={{ margin: '0px 10px' }}
+          onClick={() => {
+            actionRef.current && actionRef.current.handleSearch();
+          }}
+        >
+          查询
+        </Button>
+        <Button
+          onClick={() => {
+            actionRef.current && actionRef.current.handleReset();
+            setParams({});
+          }}
+        >
+          重置
+        </Button>
+      </div>,
+    );
+    return <div style={{ display: 'flex' }}>{divList}</div>;
+  };
   return (
     <div>
-      <Button
-        onClick={() => {
-          actionRef.current && actionRef.current.handleSearch();
-        }}
-      >
-        reload
-      </Button>
       <ProTable
+        containerStyle={{ padding: '20px' }}
         actionRef={actionRef}
         request={handleRequest}
         columns={columns}
+        paginationLeftSection={'已选择10'}
+        customFilter={renderFilter()}
       />
     </div>
   );
