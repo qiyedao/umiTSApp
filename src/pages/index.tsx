@@ -36,7 +36,7 @@ export default function IndexPage() {
       formType: 'select',
     },
   ];
-  const actionRef = useRef(null);
+  const actionRef = useRef<any>(null);
   const handleRequest = (params: { [key: string]: any }) => {
     return new Promise((resolve, reject) => {
       console.log('params', params, 'actionRef', actionRef);

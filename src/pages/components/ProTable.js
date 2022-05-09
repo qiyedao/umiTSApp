@@ -77,18 +77,21 @@ class ProTable extends React.Component {
       this.props.columns.map((item) => {
         if (item.search) {
           divList.push(
-            <Input
-              value={this.state.tempParams[item.dataIndex]}
-              onChange={(e) => {
-                this.setState({
-                  tempParams: {
-                    ...this.state.tempParams,
-                    [item.dataIndex]: e.target.value,
-                  },
-                });
-              }}
-              placeholder={item.title}
-            />,
+            <Col flex="row">
+              <span>{item.title}</span>
+              <Input
+                value={this.state.tempParams[item.dataIndex]}
+                onChange={(e) => {
+                  this.setState({
+                    tempParams: {
+                      ...this.state.tempParams,
+                      [item.dataIndex]: e.target.value,
+                    },
+                  });
+                }}
+                placeholder={item.title}
+              />
+            </Col>,
           );
         }
       });
@@ -98,7 +101,7 @@ class ProTable extends React.Component {
     console.log('this.state', this.state);
     return (
       <div>
-        {this.renderFilter()}
+        <Row>{this.renderFilter()}</Row>
         <Button type="primary" onClick={() => this.handleSearch()}>
           查询
         </Button>
