@@ -70,18 +70,9 @@ const sendStream = async (res, req, extname, filePath) => {
 };
 
 const sendFile = async (res, req, extname, filePath) => {
-  if (!fs.existsSync(filePath)) return;
   switch (extname) {
     case '.css':
       res.setHeader('Content-Type', 'text/css');
-      res.send(fs.readFileSync(filePath));
-      break;
-    case '.json':
-      res.setHeader('Content-Type', 'application/json');
-      res.send(fs.readFileSync(filePath));
-      break;
-    case '.ico':
-      res.setHeader('Content-Type', 'image/png');
       res.send(fs.readFileSync(filePath));
       break;
     case '.js':
@@ -109,7 +100,7 @@ app.use(async (req, res) => {
       或者通过express设置静态目录，umi加入publicPath配置
 */
   console.log('path.extname(req.url)', req.url, path.extname(req.url));
-  await sendFile(
+  await sendStream(
     res,
     req,
     path.extname(req.url),
