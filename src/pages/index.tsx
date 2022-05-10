@@ -1,9 +1,59 @@
 import styles from './index.less';
 import { Button, Input } from 'antd';
-import { useState, useEffect, SetStateAction, useRef } from 'react';
+import {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  useCallback,
+  useMemo,
+} from 'react';
 import ProTable from './components/ProTable';
+import {
+  ThemeContext,
+  ThemeContextProvider,
+  ThemeConsumer,
+} from './utils/themeContext';
+import { history } from 'umi';
 type IObject = {
   [key: string | number]: any;
+};
+
+const Demo = () => {
+  const theme: any = useContext(ThemeContext);
+  console.log('theme', theme);
+
+  return (
+    <div>
+      <div style={{ color: theme.color }}>theme</div>
+      <button
+        onClick={() => {
+          history.push('/detail');
+        }}
+      >
+        push
+      </button>
+      <button
+        onClick={() => {
+          theme.dispatch({
+            type: 'blue',
+            payload: {
+              color: 'blue',
+            },
+          });
+        }}
+      >
+        useReducer change color
+      </button>
+      <ThemeConsumer>
+        {(props: any) => {
+          console.log('props', props);
+
+          return <div>{props.color}</div>;
+        }}
+      </ThemeConsumer>
+    </div>
+  );
 };
 export default function IndexPage() {
   const [num, setNum] = useState<number>(0);
@@ -34,6 +84,7 @@ export default function IndexPage() {
       component: 'input',
       formStyle: {
         width: '300px',
+        minWidth: '100px',
       },
     },
     {
@@ -44,6 +95,7 @@ export default function IndexPage() {
       component: 'select',
       formStyle: {
         width: '300px',
+        minWidth: '100px',
       },
     },
     {
@@ -58,6 +110,7 @@ export default function IndexPage() {
       ],
       formStyle: {
         width: '300px',
+        minWidth: '100px',
       },
     },
     {
@@ -68,6 +121,7 @@ export default function IndexPage() {
       component: 'input',
       formStyle: {
         width: '300px',
+        minWidth: '100px',
       },
     },
   ];
@@ -187,7 +241,7 @@ export default function IndexPage() {
       </div>,
     );
     divList.push(
-      <div>
+      <div key={'query'}>
         <Button
           type="primary"
           style={{ margin: '0px 10px' }}
@@ -211,12 +265,16 @@ export default function IndexPage() {
   };
   return (
     <div>
+      <ThemeContextProvider>
+        <Demo />
+      </ThemeContextProvider>
       <ProTable
         containerStyle={{ padding: '20px' }}
         actionRef={actionRef}
         request={handleRequest}
         columns={columns}
         paginationLeftSection={'已选择10'}
+        search={true}
         customFilter={renderFilter()}
       />
     </div>

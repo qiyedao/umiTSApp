@@ -22,6 +22,24 @@ class ProTable extends React.Component {
     pageSize: 10,
     params: {},
     tempParams: {},
+    span: 6,
+    loading: false,
+  };
+
+  initState = () => {
+    let pageSize = this.props.pageSize || this.state.pageSize;
+    let pageNo = this.state.pageNo;
+    this.props.request &&
+      this.props.request({ pageNo, pageSize }).then((res) => {
+        console.log('handlerequest res', res);
+        this.setState({
+          ...res,
+        });
+      });
+    this.setState({
+      pageSize: pageSize,
+      loading: this.props.loading || false,
+    });
   };
 
   handleRefresh = () => {
@@ -93,7 +111,7 @@ class ProTable extends React.Component {
 
   handleChangeNumber = (pageNo, pageSize) => {
     this.props
-      .request({ pageNo, pageSize, ...this.state.params })
+      .request({ changeNumber: true, pageNo, pageSize, ...this.state.params })
       .then((res) => {
         this.setState({
           ...res,
@@ -112,21 +130,43 @@ class ProTable extends React.Component {
         handleGetParams: this.handleGetParams,
       };
     }
-    let { pageNo, pageSize } = this.state;
-    this.props.request &&
-      this.props.request({ pageNo, pageSize }).then((res) => {
-        this.setState({
-          ...res,
-        });
-      });
+    this.initState();
+    if (this.props.search) {
+      this.getColumnsCount();
+      window.addEventListener('resize', this.getColumnsCount);
+    }
   }
-  renderFilter = () => {
+  componentWillUnmount() {
+    if (this.props.search) {
+      window.removeEventListener('resize', this.getColumnsCount);
+    }
+  }
+  getColumnsCount = () => {
+    let span = 0;
+    if (window.innerWidth > 992) {
+      span = 6;
+    }
+    if (window.innerWidth > 768 && window.innerWidth < 992) {
+      span = 8;
+    }
+    if (window.innerWidth > 576 && window.innerWidth < 768) {
+      span = 12;
+    }
+    if (window.innerWidth <= 576) {
+      span = 24;
+    }
+    if (span)
+      this.setState({
+        span,
+      });
+  };
+  renderFilter = (span) => {
     let divList = [];
     this.props.columns &&
       this.props.columns.map((item, index) => {
         if (item.search) {
           divList.push(
-            <Col key={index} span={6} flex="row">
+            <Col key={index} span={span}>
               <div className={styles.itemContainer}>
                 <span className={styles.filterLabel}>
                   <span
@@ -175,40 +215,42 @@ class ProTable extends React.Component {
   render() {
     return (
       <div style={this.props.containerStyle ? this.props.containerStyle : ''}>
-        {/* <div>
-          {this.props.customFilter ? (
-            this.props.customFilter
-          ) : (
-            <div>
-              <Row style={{ marginBottom: 16 }} wrap>
-                {this.renderFilter()}
-              </Row>
-              <Row style={{ marginBottom: 16 }}>
-                <Col offset={18} span={6}>
-                  <div className={styles.flexEnd}>
-                    <Button
-                      style={{ marginRight: 20 }}
-                      type="primary"
-                      onClick={() => this.handleSearch()}
-                    >
-                      查询
-                    </Button>
-                    <Button onClick={() => this.handleReset()}>重置</Button>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          )}
-        </div> */}
-        {/* <Table
+        {this.props.search ? (
+          <div>
+            {this.props.customFilter ? (
+              this.props.customFilter
+            ) : (
+              <div>
+                <Row style={{ marginBottom: 16 }} wrap>
+                  {this.renderFilter(this.state.span)}
+                </Row>
+                <Row style={{ marginBottom: 16 }}>
+                  <Col offset={18} span={6}>
+                    <div className={styles.flexEnd}>
+                      <Button
+                        style={{ marginRight: 20 }}
+                        type="primary"
+                        onClick={() => this.handleSearch()}
+                      >
+                        查询
+                      </Button>
+                      <Button onClick={() => this.handleReset()}>重置</Button>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            )}
+          </div>
+        ) : null}
+        <Table
           pagination={false}
-          rowKey={(record) => {
-            return record.value + new Date().getTime();
-          }}
+          rowKey={(record) => record[this.props.rowkey]}
+          rowSelection={this.props.rowSelection || null}
           columns={this.props.columns}
+          loading={this.state.loading}
           dataSource={this.state.dataSource}
-        /> */}
-        {/* <div
+        />
+        <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -225,7 +267,7 @@ class ProTable extends React.Component {
               this.handleChangeNumber(pageNo, pageSize);
             }}
           />
-        </div> */}
+        </div>
       </div>
     );
   }
