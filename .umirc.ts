@@ -6,6 +6,7 @@ export default defineConfig({
     type: 'none',
   },
   dynamicImport: {},
+  exportStatic: {},
   history: { type: 'browser' },
   // layout: {},
   antd: {},
