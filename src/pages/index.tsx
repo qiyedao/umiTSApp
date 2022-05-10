@@ -7,6 +7,8 @@ import {
   useRef,
   useCallback,
   useMemo,
+  ReactNode,
+  Component,
 } from 'react';
 import ProTable from './components/ProTable';
 import {
@@ -18,7 +20,13 @@ import { history } from 'umi';
 type IObject = {
   [key: string | number]: any;
 };
-
+import { observerComponent } from './utils/observer';
+@observerComponent
+class Demo2 extends Component {
+  render(): ReactNode {
+    return <div>demo2</div>;
+  }
+}
 const Demo = () => {
   const theme: any = useContext(ThemeContext);
   console.log('theme', theme);
@@ -208,6 +216,7 @@ export default function IndexPage() {
     <div>
       <ThemeContextProvider>
         <Demo />
+        <Demo2 />
       </ThemeContextProvider>
       <ProTable
         containerStyle={{ padding: '20px' }}
