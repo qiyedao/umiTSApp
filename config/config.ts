@@ -61,4 +61,19 @@ export default defineConfig({
       },
     },
   },
+  // qiankun: {
+  //   master: {
+  //     // 注册子应用信息
+  //     apps: [
+  //       {
+  //         name: 'app1', // 唯一 id
+  //         entry: 'https://umijs.org/zh-CN', // html entry
+  //       },
+  //       {
+  //         name: 'app2', // 唯一 id
+  //         entry: 'https://ant.design/components/modal-cn/', // html entry
+  //       },
+  //     ],
+  //   },
+  // },
 });
