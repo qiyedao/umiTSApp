@@ -16,7 +16,7 @@ import {
   ThemeContextProvider,
   ThemeConsumer,
 } from './utils/themeContext';
-import { history } from 'umi';
+import { history, request, useModel } from 'umi';
 type IObject = {
   [key: string | number]: any;
 };
@@ -24,16 +24,24 @@ import { observerComponent } from './utils/observer';
 @observerComponent
 class Demo2 extends Component {
   render(): ReactNode {
-    return <div>demo2</div>;
+    return <div className={styles.fontBlue}>detail1</div>;
   }
 }
 const Demo = () => {
   const theme: any = useContext(ThemeContext);
   console.log('theme', theme);
-
+  const { count, decrement, increment } = useModel('counter');
+  useEffect(() => {}, []);
   return (
     <div>
-      <div style={{ color: theme.color }}>theme</div>
+      <div style={{ color: theme.color }}>theme{count}</div>
+      <Button
+        onClick={() => {
+          increment(5);
+        }}
+      >
+        +1
+      </Button>
       <button
         onClick={() => {
           history.push('/detail');
@@ -130,22 +138,17 @@ export default function IndexPage() {
       console.log('params', params, 'actionRef', actionRef);
 
       let { pageNo, pageSize } = params;
-      fetch('/v1/user')
-        .then((res) => {
-          console.log('fetch1', res);
-          return res.json();
-        })
-        .then((data) => {
-          let { list } = data;
-          setPageNo(pageNo);
+      request('/v1/user').then((data) => {
+        let { list } = data;
+        setPageNo(pageNo);
 
-          setDataSource(list.slice((pageNo - 1) * pageSize, pageNo * pageSize));
-          resolve({
-            dataSource: list.slice((pageNo - 1) * pageSize, pageNo * pageSize),
-            total: list.length,
-            success: true,
-          });
+        setDataSource(list.slice((pageNo - 1) * pageSize, pageNo * pageSize));
+        resolve({
+          dataSource: list.slice((pageNo - 1) * pageSize, pageNo * pageSize),
+          total: list.length,
+          success: true,
         });
+      });
     });
   };
 
