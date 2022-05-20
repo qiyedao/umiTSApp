@@ -4,7 +4,7 @@ import layoutSettings from './layoutSettings';
 const { winPath } = utils;
 
 export default defineConfig({
-  // ssr: {},
+  ssr: {},
 
   nodeModulesTransform: {
     type: 'none',
@@ -13,6 +13,7 @@ export default defineConfig({
     loading: '@/pages/components/Loading',
   },
   antd: {},
+  esbuild: {},
   locale: {
     // default zh-CN
     default: 'en-US',

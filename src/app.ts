@@ -1,4 +1,4 @@
 // src/app.ts
 export async function getInitialState() {
-  return Promise.resolve({ role: 'admin' });
+  return Promise.resolve({ role: 'adminf' });
 }
