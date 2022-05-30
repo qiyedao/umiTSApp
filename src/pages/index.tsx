@@ -16,14 +16,39 @@ import {
   ThemeContextProvider,
   ThemeConsumer,
 } from './utils/themeContext';
-import { history, request, useModel } from 'umi';
+import {
+  history,
+  request,
+  useModel,
+  connect,
+  IndexModelState,
+  Loading,
+} from 'umi';
 type IObject = {
   [key: string | number]: any;
 };
 import { observerComponent } from './utils/observer';
 @observerComponent
+@connect(
+  ({ index, loading }: { index: IndexModelState; loading: Loading }) => ({
+    index,
+    loading: loading.effects['index/modify'],
+  }),
+)
 class Demo2 extends Component {
+  componentDidMount() {
+    this.props
+      ?.dispatch({
+        type: 'index/modify',
+        payload: {},
+      })
+      .then((res: any) => {
+        console.log('index/modify', res);
+      });
+  }
   render(): ReactNode {
+    console.log('this.props', this.props);
+
     return <div className={styles.fontBlue}>detail1</div>;
   }
 }

@@ -4,13 +4,17 @@ import layoutSettings from './layoutSettings';
 const { winPath } = utils;
 
 export default defineConfig({
-  ssr: {},
-
+  // ssr: {},
+  exportStatic: {},
   nodeModulesTransform: {
     type: 'none',
   },
   dynamicImport: {
     loading: '@/pages/components/Loading',
+  },
+  dva: {
+    immer: false,
+    hmr: true,
   },
   antd: {},
   esbuild: {},
@@ -23,7 +27,7 @@ export default defineConfig({
   },
   // exportStatic: {},
   history: { type: 'browser' },
-  layout: { locale: true, ...layoutSettings },
+  // layout: { locale: true, ...layoutSettings },
 
   routes,
   fastRefresh: {},

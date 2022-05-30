@@ -1,4 +1,5 @@
 // src/app.ts
-export async function getInitialState() {
-  return Promise.resolve({ role: 'adminf' });
-}
+//使用后，只能csr
+// export async function getInitialState() {
+//   return Promise.resolve({ role: 'adminf' });
+// }

@@ -15,7 +15,7 @@ const sendStream = async (res, req, extname, filePath) => {
   let responseData = []; //存储文件流
   switch (extname) {
     case '.css':
-      // res.setHeader('Content-Type', 'text/css');
+      res.setHeader('Content-Type', 'text/css');
       stream = fs.createReadStream(filePath);
 
       if (stream) {
@@ -29,7 +29,7 @@ const sendStream = async (res, req, extname, filePath) => {
       }
       break;
     case '.js':
-      // res.setHeader('Content-Type', 'text/javascript');
+      res.setHeader('Content-Type', 'text/javascript');
       stream = fs.createReadStream(filePath);
       responseData = []; //存储文件流
       if (stream) {
@@ -43,7 +43,7 @@ const sendStream = async (res, req, extname, filePath) => {
       }
       break;
     case '.png':
-      // res.setHeader('Content-Type', 'image/png');
+      res.setHeader('Content-Type', 'image/png');
       stream = fs.createReadStream(filePath);
       responseData = []; //存储文件流
       if (stream) {
@@ -70,7 +70,9 @@ const sendStream = async (res, req, extname, filePath) => {
 };
 
 const sendFile = async (res, req, extname, filePath) => {
-  if (!fs.existsSync(filePath)) return;
+  if (!fs.existsSync(filePath)) {
+    return;
+  }
   switch (extname) {
     case '.css':
       res.setHeader('Content-Type', 'text/css');

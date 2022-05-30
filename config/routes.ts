@@ -25,6 +25,11 @@ export default [
     microApp: 'app2',
   },
   {
+    name: '403',
+    path: '/403',
+    component: '@/pages/403',
+  },
+  {
     component: '@/pages/404',
   },
 ];
