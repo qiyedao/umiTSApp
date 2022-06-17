@@ -1,0 +1,28 @@
+@custom-border-color: rgba(221, 230, 233, 1);
+@custom-title-color: rgba(28, 28, 40, 1);
+@custom-title-right-color: rgba(14, 41, 73, 1);
+.custom-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: @custom-title-color;
+  font-weight: 600;
+}
+.custom-modal-header-border {
+  padding-bottom: 8px;
+  border-bottom: 1px solid @custom-border-color;
+}
+.custom-title-right {
+  color: @custom-title-right-color;
+  font-weight: normal;
+}
+.custom-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-modal-footer-border {
+  padding-top: 8px;
+  border-top: 1px solid @custom-border-color;
+}

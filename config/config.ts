@@ -5,7 +5,7 @@ const { winPath } = utils;
 
 export default defineConfig({
   hash: true,
-  ssr: {},
+  // ssr: {},
   exportStatic: {},
   nodeModulesTransform: {
     type: 'none',
@@ -34,39 +34,39 @@ export default defineConfig({
   fastRefresh: {},
   // mfsu: {},
   lessLoader: { javascriptEnabled: true },
-  cssLoader: {
-    // 这里的 modules 可以接受 getLocalIdent
-    modules: {
-      getLocalIdent: (
-        context: {
-          resourcePath: string;
-        },
-        _: string,
-        localName: string,
-      ) => {
-        if (
-          context.resourcePath.includes('node_modules') ||
-          context.resourcePath.includes('ant.design.pro.less') ||
-          context.resourcePath.includes('global.less')
-        ) {
-          return localName;
-        }
+  // cssLoader: {
+  //   // 这里的 modules 可以接受 getLocalIdent
+  //   modules: {
+  //     getLocalIdent: (
+  //       context: {
+  //         resourcePath: string;
+  //       },
+  //       _: string,
+  //       localName: string,
+  //     ) => {
+  //       if (
+  //         context.resourcePath.includes('node_modules') ||
+  //         context.resourcePath.includes('ant.design.pro.less') ||
+  //         context.resourcePath.includes('global.less')
+  //       ) {
+  //         return localName;
+  //       }
 
-        const match = context.resourcePath.match(/src(.*)/);
-        if (match && match[1]) {
-          const antdProPath = match[1].replace('.less', '');
-          const arr = winPath(antdProPath)
-            .split('/')
-            .map((a: string) => a.replace(/([A-Z])/g, '-$1'))
-            .map((a: string) => a.toLowerCase());
+  //       const match = context.resourcePath.match(/src(.*)/);
+  //       if (match && match[1]) {
+  //         const antdProPath = match[1].replace('.less', '');
+  //         const arr = winPath(antdProPath)
+  //           .split('/')
+  //           .map((a: string) => a.replace(/([A-Z])/g, '-$1'))
+  //           .map((a: string) => a.toLowerCase());
 
-          return `antd-pro${arr.join('-')}-${localName}`.replace(/--/g, '-');
-        }
+  //         return `antd-pro${arr.join('-')}-${localName}`.replace(/--/g, '-');
+  //       }
 
-        return localName;
-      },
-    },
-  },
+  //       return localName;
+  //     },
+  //   },
+  // },
   // qiankun: {
   //   master: {
   //     // 注册子应用信息
