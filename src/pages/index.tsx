@@ -1,5 +1,6 @@
 import styles from './index.less';
 import { Button, Input, DatePicker } from 'antd';
+import moment from 'moment';
 import * as echarts from 'echarts';
 import {
   useState,
@@ -29,6 +30,7 @@ type IObject = {
   [key: string | number]: any;
 };
 import { observerComponent } from './utils/observer';
+import dayjs from 'dayjs';
 @observerComponent
 @connect(
   ({ index, loading }: { index: IndexModelState; loading: Loading }) => ({
@@ -279,7 +281,12 @@ export default function IndexPage() {
       />
       <DatePicker
         onChange={(value) => {
-          console.log('DatePicker', value);
+          console.log(
+            'DatePicker',
+            value,
+            'moment',
+            moment(value).format('YYYY-MM-DD hh:mm:ss'),
+          );
         }}
       />
       <div id="myChart" style={{ width: 500, height: 500 }}></div>

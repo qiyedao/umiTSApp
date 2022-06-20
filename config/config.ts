@@ -3,6 +3,7 @@ import routes from './routes';
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 export default defineConfig({
+  favicon: '/assets/favicon.svg',
   hash: true,
   ssr: {},
   devtool: 'eval',
@@ -45,9 +46,6 @@ export default defineConfig({
   routes,
   fastRefresh: {},
   chainWebpack: function (config, { webpack }) {
-    config.merge({
-      plugins: [new AntdDayjsWebpackPlugin()],
-    });
-    return config;
+    config.plugin('antd-dayjs-webpack-plugin').use(AntdDayjsWebpackPlugin);
   },
 });
