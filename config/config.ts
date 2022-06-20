@@ -19,10 +19,10 @@ export default defineConfig({
 
   locale: {
     // default zh-CN
-    default: 'en-US',
+    default: 'zh-CN',
     antd: true,
     // default true, when it is true, will use `navigator.language` overwrite default
-    baseNavigator: false,
+    baseNavigator: true,
   },
   history: { type: 'browser' },
   routes,
