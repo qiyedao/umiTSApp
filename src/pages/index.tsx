@@ -249,7 +249,7 @@ export default function IndexPage() {
       <ProTable
         containerStyle={{ padding: '20px' }}
         actionRef={actionRef}
-        request={handleRequest}
+        // request={handleRequest}
         columns={columns}
         paginationLeftSection={'已选择10'}
         search={true}

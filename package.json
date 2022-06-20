@@ -24,7 +24,7 @@
     "mockjs": "^1.1.0",
     "react": "17.x",
     "react-dom": "17.x",
-    "umi": "^3.5.23"
+    "umi": "3.5.26"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
