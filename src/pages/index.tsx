@@ -1,5 +1,5 @@
 import styles from './index.less';
-import { Button, Input } from 'antd';
+import { Button, Input, DatePicker } from 'antd';
 import * as echarts from 'echarts';
 import {
   useState,
@@ -276,6 +276,11 @@ export default function IndexPage() {
         paginationLeftSection={'已选择10'}
         search={true}
         customFilter={renderFilter()}
+      />
+      <DatePicker
+        onChange={(value) => {
+          console.log('DatePicker', value);
+        }}
       />
       <div id="myChart" style={{ width: 500, height: 500 }}></div>
     </div>
