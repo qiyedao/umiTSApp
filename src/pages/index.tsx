@@ -109,7 +109,18 @@ export default function IndexPage() {
   const handleClick = (num: number) => {};
   useEffect(() => {
     console.log('服务端ssr');
-
+    window.h5sdk.ready(function () {
+      window.tt.openSchema({
+        schema: 'https://open.feishu.cn',
+        external: false,
+        success(res) {
+          console.log(res);
+        },
+        fail(res) {
+          console.log(`open fail`);
+        },
+      });
+    });
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('myChart'));
     // 绘制图表

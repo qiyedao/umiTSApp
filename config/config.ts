@@ -7,7 +7,7 @@ export default defineConfig({
   hash: true,
   ssr: {},
   devtool: 'eval',
-  // outputPath:'dist'
+  // outputPath: 'dist/zh-CN',
   // publicPath: '/zh-CN/',
   exportStatic: {},
   nodeModulesTransform: {
@@ -27,6 +27,9 @@ export default defineConfig({
     'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
     'https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/antd/4.21.3/antd.min.js',
+  ],
+  headScripts: [
+    'https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.15.js',
   ],
   dynamicImport: {
     loading: '@/pages/components/Loading',
