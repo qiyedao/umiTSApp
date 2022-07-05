@@ -1,5 +1,6 @@
 import styles from './index.less';
 import { Button, Input } from 'antd';
+import useTimeOut from './hooks/useTimeout/index';
 import {
   useState,
   useEffect,
@@ -9,6 +10,7 @@ import {
   useMemo,
   ReactNode,
   Component,
+  useReducer,
 } from 'react';
 import ProTable from './components/ProTable';
 import {
@@ -28,6 +30,8 @@ type IObject = {
   [key: string | number]: any;
 };
 import { observerComponent } from './utils/observer';
+import useInterval from './hooks/useInterval';
+import countReducer from './reducers/index';
 @observerComponent
 @connect(
   ({ index, loading }: { index: IndexModelState; loading: Loading }) => ({
@@ -55,8 +59,17 @@ class Demo2 extends Component {
 const Demo = () => {
   const theme: any = useContext(ThemeContext);
   console.log('theme', theme);
+
   const { count, decrement, increment } = useModel('counter');
-  useEffect(() => {}, []);
+  const counter = useReducer(countReducer, { num: 0 });
+  const [state, dispatch] = counter;
+  const [delay, setDelay] = useState(-1);
+  const clear = useInterval(() => {
+    console.log('interval', delay);
+  }, delay);
+  useEffect(() => {
+    console.log('counter', counter);
+  }, []);
   return (
     <div>
       <div style={{ color: theme.color }}>theme{count}</div>
@@ -73,6 +86,44 @@ const Demo = () => {
         }}
       >
         push
+      </button>
+
+      <button
+        onClick={() => {
+          setDelay(delay + 500);
+        }}
+      >
+        interval
+      </button>
+      <button
+        onClick={() => {
+          clear();
+        }}
+      >
+        clear
+      </button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'add',
+            payload: {
+              num: 1,
+            },
+          });
+        }}
+      >
+        countReducer{state.num}
+      </button>
+      <button
+        onClick={() => {
+          console.log(
+            dispatch({
+              type: 'get',
+            }),
+          );
+        }}
+      >
+        get countReducer
       </button>
       <button
         onClick={() => {
