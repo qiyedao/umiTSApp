@@ -30,7 +30,7 @@ type IObject = {
   [key: string | number]: any;
 };
 import { observerComponent } from './utils/observer';
-import useInterval from './hooks/useInterval';
+import useInterval from './hooks/useInterval/index';
 import countReducer from './reducers/index';
 @observerComponent
 @connect(
@@ -70,6 +70,10 @@ const Demo = () => {
   useEffect(() => {
     console.log('counter', counter);
   }, []);
+  const handleEle = () => {
+    let temp = [<div>ff</div>];
+    let temp2 = <div>22</div>;
+  };
   return (
     <div>
       <div style={{ color: theme.color }}>theme{count}</div>
