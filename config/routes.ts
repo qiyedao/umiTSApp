@@ -1,5 +1,5 @@
 export default [
-  { path: '/', component: '@/pages/home/index', name: 'index' },
+  { path: '/', component: '@/pages/index', name: 'index' },
   {
     path: '/detail',
     component: '@/pages/detail/index',

@@ -31,8 +31,8 @@
     "rc-scroll-anim": "^2.7.6",
     "rc-texty": "^0.2.0",
     "rc-tween-one": "^3.0.6",
-    "react": "18.x",
-    "react-dom": "18.x",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "umi": "^3.5.26"
   },
   "devDependencies": {

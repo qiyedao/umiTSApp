@@ -1,3 +1,4 @@
+import { routerRedux } from 'dva/router';
 import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
 
 export interface IndexModelState {
@@ -30,6 +31,7 @@ const IndexModel: IndexModelType = {
   effects: {
     *query({ payload }, { call, put }) {},
     *modify({ payload }, { call, put }) {
+      // yield put(routerRedux.push('/detail'));
       return true;
     },
     *delete({ payload }, { call, put }) {
@@ -43,6 +45,7 @@ const IndexModel: IndexModelType = {
         ...action.payload,
       };
     },
+
     // 启用 immer 之后
     // save(state, action) {
     //   state.name = action.payload;
