@@ -48,7 +48,7 @@ const Bottom: FC = () => {
   );
 };
 
-export default (props) => {
+export default (props: { children: React.ReactNode }) => {
   return (
     <div className={styles.app}>
       {/* <div className={styles.top}>
