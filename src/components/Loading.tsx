@@ -1,5 +1,5 @@
 import React from 'react';
-import { DotLoading } from 'antd-mobile';
+import { DotLoading, SpinLoading } from 'antd-mobile';
 
 export default () => {
   return (
@@ -7,12 +7,14 @@ export default () => {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'cener',
+        alignItems: 'center',
         height: '100%',
         width: '100%',
       }}
     >
-      <DotLoading />
+      <span style={{ fontSize: 24 }}>
+        <SpinLoading color={'primary'} />
+      </span>
     </div>
   );
 };

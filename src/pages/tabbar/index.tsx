@@ -55,11 +55,7 @@ export default (props) => {
         <CustomNavBar hideNavBar backArrow={false} />
       </div> */}
       <div className={styles.body}>
-        <div className={styles.main}>
-          <div>12</div>
-          {props.children}
-          <div>12</div>
-        </div>
+        <div className={styles.main}>{props.children}</div>
       </div>
       <div className={styles.bottom}>
         <Bottom />
