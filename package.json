@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "umi dev",
+    "start": "cross-env TAILWIND_MODE=watch umi dev",
     "build": "umi build",
+    "config":"umi webpack ",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -42,6 +43,7 @@
     "@umijs/plugin-qiankun": "^2.39.2",
     "@umijs/preset-react": "2.x",
     "@umijs/test": "^3.5.26",
+    "cross-env": "^7.0.3",
     "express": "^4.18.1",
     "lint-staged": "^13.0.2",
     "prettier": "^2.7.1",

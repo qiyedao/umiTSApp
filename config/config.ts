@@ -34,6 +34,7 @@ export default defineConfig({
   fastRefresh: {},
   // mfsu: {},
   lessLoader: { javascriptEnabled: true },
+
   // cssLoader: {
   //   // 这里的 modules 可以接受 getLocalIdent
   //   modules: {
