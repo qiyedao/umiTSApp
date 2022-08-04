@@ -4,7 +4,7 @@ import routes from './routes';
 export default defineConfig({
   favicon: '/assets/favicon.svg',
   hash: true,
-  // ssr: {},
+  ssr: {},
   devtool: 'eval',
 
   exportStatic: {},
@@ -12,20 +12,6 @@ export default defineConfig({
     type: 'none',
   },
 
-  externals: {
-    react: 'window.React',
-    'react-dom': 'window.ReactDOM',
-    moment: 'window.moment',
-  },
-  scripts: [
-    'https://gw.alipayobjects.com/os/lib/react/16.13.1/umd/react.production.min.js',
-    'https://gw.alipayobjects.com/os/lib/react-dom/16.13.1/umd/react-dom.production.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
-  ],
-
-  headScripts: [
-    'https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.15.js',
-  ],
   dynamicImport: {
     loading: '@/pages/components/Loading',
   },

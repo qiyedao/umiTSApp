@@ -19,3 +19,4 @@ config info
 2. 开启 ssr 
   1. locale 要关闭
   2. getInitialState 要关闭
+  

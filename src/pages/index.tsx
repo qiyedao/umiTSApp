@@ -1,10 +1,10 @@
 import React from 'react';
-import { Skeleton, DotLoading } from 'antd-mobile';
+import { Skeleton, DotLoading, ProgressCircle } from 'antd-mobile';
 
 export default () => {
   return (
     <div>
-      index
+      <ProgressCircle />
       <DotLoading />
       <Skeleton.Title animated />
       <Skeleton.Paragraph lineCount={5} animated />
