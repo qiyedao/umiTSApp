@@ -76,7 +76,9 @@ const Demo = () => {
   };
   return (
     <div>
-      <div style={{ color: theme.color }}>theme{count}</div>
+      <div style={{ color: theme.color }}>
+        aaaaaaaaaaaaaaaaaaaaaaabbbtheme{count}
+      </div>
       <Button
         onClick={() => {
           increment(5);
