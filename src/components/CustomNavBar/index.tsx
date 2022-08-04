@@ -1,9 +1,31 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { NavBar } from 'antd-mobile';
+import { LeftOutline } from 'antd-mobile-icons';
+import { useHistory, useLocation } from 'umi';
 interface NavBarProps {
   backArrow?: boolean;
+  showTitle?: boolean;
+  hideNavBar?: boolean;
 }
-const CustomNavBar: FC<NavBarProps> = ({ backArrow = true }) => {
-  return <NavBar backArrow={backArrow}>title</NavBar>;
+const CustomNavBar: FC<NavBarProps> = ({
+  backArrow = true,
+  showTitle = true,
+  hideNavBar = false,
+}) => {
+  const history = useHistory();
+  const location = useLocation();
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    setTitle(document.title);
+  }, [document.title]);
+  const back = () => {
+    history.goBack();
+  };
+
+  return hideNavBar ? null : (
+    <NavBar onBack={back} backArrow={backArrow ? <LeftOutline /> : false}>
+      {showTitle ? title : null}
+    </NavBar>
+  );
 };
 export default CustomNavBar;

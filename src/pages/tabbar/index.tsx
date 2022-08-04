@@ -15,7 +15,7 @@ import {
 } from 'antd-mobile-icons';
 import styles from './index.less';
 import CustomNavBar from '@/components/CustomNavBar';
-import 'antd-mobile/es/';
+
 const Bottom: FC = () => {
   const history = useHistory();
   const location = useLocation();
@@ -28,13 +28,13 @@ const Bottom: FC = () => {
   const tabs = [
     {
       key: '/home',
-      title: '首页',
+      title: 'home',
       icon: <AppOutline />,
     },
 
     {
-      key: '/me',
-      title: '个人中心',
+      key: '/home/me',
+      title: 'me',
       icon: <UserOutline />,
     },
   ];
@@ -48,40 +48,18 @@ const Bottom: FC = () => {
   );
 };
 
-// export default () => {
-//   return (
-//     <Router initialEntries={['/home']}>
-//       <div className={styles.app}>
-//         <div className={styles.top}>
-//           <CustomNavBar backArrow={false} />
-//         </div>
-//         <div className={styles.body}>
-//           <Switch>
-//             <Route exact path="/home">
-//               <Home />
-//             </Route>
-
-//             <Route exact path="/me">
-//               <PersonalCenter />
-//             </Route>
-//           </Switch>
-//         </div>
-//         <div className={styles.bottom}>
-//           <Bottom />
-//         </div>
-//       </div>
-//     </Router>
-//   );
-// };
-
 export default (props) => {
   return (
     <div className={styles.app}>
-      <div className={styles.top}>
-        <CustomNavBar backArrow={false} />
-      </div>
+      {/* <div className={styles.top}>
+        <CustomNavBar hideNavBar backArrow={false} />
+      </div> */}
       <div className={styles.body}>
-        <div>{props.children}1345678</div>
+        <div className={styles.main}>
+          <div>12</div>
+          {props.children}
+          <div>12</div>
+        </div>
       </div>
       <div className={styles.bottom}>
         <Bottom />

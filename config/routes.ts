@@ -1,30 +1,41 @@
 export default [
   {
-    path: '/',
+    path: '/home',
     component: '@/pages/tabbar',
     name: 'tabbar',
     routes: [
       {
-        name: 'home',
+        title: 'home',
         path: '/home',
         component: '@/pages/home',
       },
       {
-        name: 'me',
-        path: '/me',
+        title: 'me',
+        path: '/home/me',
         component: '@/pages/me',
       },
     ],
   },
   {
-    name: 'info',
-    path: '/info',
-    component: '@/pages/info',
+    name: 'content',
+    path: '/content',
+    component: '@/layout/ContentLayout',
+    routes: [
+      {
+        title: 'info',
+        path: '/content/info',
+        component: '@/pages/info',
+      },
+    ],
   },
   {
-    name: '403',
+    title: '403',
     path: '/403',
     component: '@/pages/403',
+  },
+  {
+    path: '/',
+    redirect: '/home',
   },
   {
     component: '@/pages/404',

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
 const Info: FC = () => {
-  return <div>info</div>;
+  return <div style={{ height: '1000px' }}>info</div>;
 };
 export default Info;

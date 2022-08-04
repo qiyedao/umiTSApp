@@ -6,12 +6,12 @@ const Home: FC = () => {
   return (
     <div>
       <DotLoading />
-      首页
+
       <Button
         color="primary"
         fill="solid"
         onClick={() => {
-          history.push('/info');
+          history.push('/content/info');
         }}
       >
         info
