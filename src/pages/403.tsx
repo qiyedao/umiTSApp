@@ -6,10 +6,10 @@ const NoFoundPage: React.FC = () => (
   <Result
     status="403"
     title="403"
-    subTitle="Sorry, the page you have no auth."
+    subTitle="无权访问"
     extra={
       <Button type="primary" onClick={() => history.push('/')}>
-        Back Home
+        回首页
       </Button>
     }
   />

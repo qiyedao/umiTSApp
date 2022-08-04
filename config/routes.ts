@@ -1,30 +1,35 @@
 export default [
   {
-    path: '/home',
-    component: '@/pages/tabbar',
-    name: 'tabbar',
-    routes: [
-      {
-        title: 'home',
-        path: '/home',
-        component: '@/pages/home',
-      },
-      {
-        title: 'me',
-        path: '/home/me',
-        component: '@/pages/me',
-      },
-    ],
-  },
-  {
     name: 'content',
-    path: '/content',
+    path: '/layout',
     component: '@/layout/ContentLayout',
     routes: [
       {
         title: 'info',
-        path: '/content/info',
+        path: '/layout/info',
         component: '@/pages/info',
+      },
+      {
+        title: '404',
+        component: '@/pages/404',
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: '@/pages/tabbar',
+    name: 'tabbar',
+
+    routes: [
+      {
+        title: 'home',
+        path: '/',
+        component: '@/pages/home',
+      },
+      {
+        title: 'me',
+        path: '/me',
+        component: '@/pages/me',
       },
     ],
   },
@@ -33,11 +38,9 @@ export default [
     path: '/403',
     component: '@/pages/403',
   },
+
   {
-    path: '/',
-    redirect: '/home',
-  },
-  {
+    title: '404',
     component: '@/pages/404',
   },
 ];

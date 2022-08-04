@@ -27,13 +27,13 @@ const Bottom: FC = () => {
 
   const tabs = [
     {
-      key: '/home',
+      key: '/',
       title: 'home',
       icon: <AppOutline />,
     },
 
     {
-      key: '/home/me',
+      key: '/me',
       title: 'me',
       icon: <UserOutline />,
     },
