@@ -1,7 +1,24 @@
-@import url('../global.less');
-.title {
-  background: rgb(121, 242, 157);
+@import url(../global.less);
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.fontBlue{
-  color: #1890ff;
+
+.top {
+  flex: 0;
+  border-bottom: solid 1px var(--adm-color-border);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+.bottom {
+  flex: 0;
+  border-top: solid 1px var(--adm-color-border);
 }

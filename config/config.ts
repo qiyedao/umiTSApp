@@ -13,12 +13,10 @@ export default defineConfig({
   },
 
   dynamicImport: {
-    loading: '@/pages/components/Loading',
+    loading: '@/components/Loading',
   },
   dva: {},
-  antdMobile: {
-    hd: true,
-  },
+  antdMobile: {},
   ignoreMomentLocale: true,
   // locale: {
   //   // default zh-CN
@@ -30,16 +28,6 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: 'antd-mobile',
-        libraryDirectory: 'es/components',
-        style: false,
-      },
-    ],
-  ],
   chainWebpack: function (config, { webpack }) {
     // config.plugin('antd-dayjs-webpack-plugin').use(AntdDayjsWebpackPlugin);
   },
