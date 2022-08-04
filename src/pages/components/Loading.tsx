@@ -1,9 +1,10 @@
 import React from 'react';
-import { Spin } from 'antd';
+import { DotLoading } from 'antd-mobile';
+
 export default () => {
   return (
     <div>
-      <Spin></Spin>
+      <DotLoading />
     </div>
   );
 };
