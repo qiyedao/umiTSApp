@@ -11,6 +11,8 @@ const Home: FC = () => {
         color="primary"
         fill="solid"
         onClick={() => {
+          console.log('info');
+
           history.push('/layout/info');
         }}
       >

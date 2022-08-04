@@ -28,6 +28,7 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
+
   chainWebpack: function (config, { webpack }) {
     // config.plugin('antd-dayjs-webpack-plugin').use(AntdDayjsWebpackPlugin);
   },

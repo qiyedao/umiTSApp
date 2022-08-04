@@ -18,11 +18,8 @@ const CustomNavBar: FC<NavBarProps> = ({
   const location = useLocation();
   const [title, setTitle] = useState('');
   useEffect(() => {
-    console.log('routes', routes);
-
     const currentRoute = getCurrentRoute(routes, location.pathname);
     setTitle(currentRoute?.title);
-    console.log('title', title);
   }, [location.pathname]);
   const back = () => {
     history.goBack();
