@@ -31,6 +31,10 @@ export default [
         path: '/me',
         component: '@/pages/me',
       },
+      {
+        title: '404',
+        component: '@/pages/404',
+      },
     ],
   },
   {
