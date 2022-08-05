@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useHistory } from 'umi';
 import { Button, DotLoading } from 'antd-mobile';
 const Home: FC = () => {
   const history = useHistory();
+  useEffect(() => {
+    wx.config({});
+  }, []);
   return (
     <div>
       <DotLoading />

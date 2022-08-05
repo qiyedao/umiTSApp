@@ -27,6 +27,7 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
+  headScripts: [{ src: '/jweixin-1.6.0.js' }],
   terserOptions: {
     compress: {
       drop_console: true,
