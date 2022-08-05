@@ -30,6 +30,7 @@ config info
     ```
 # umi-plugin-tailwindcss
   ```
-  yarn add umi-plugin-tailwindcss  -D 
+  yarn add umi-plugin-tailwindcss  -D
+ 
   ```
-自动引用tailwindcss 
+自动引用tailwindcss@2

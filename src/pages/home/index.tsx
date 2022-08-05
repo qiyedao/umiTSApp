@@ -21,6 +21,30 @@ const Home: FC = () => {
       >
         info
       </Button>
+      <div className="flex 	justify-between items-center	">
+        <Button
+          color="primary"
+          fill="solid"
+          onClick={() => {
+            console.log('info');
+
+            history.push('/layout/info');
+          }}
+        >
+          info
+        </Button>{' '}
+        <Button
+          color="primary"
+          fill="solid"
+          onClick={() => {
+            console.log('info');
+
+            history.push('/layout/info');
+          }}
+        >
+          info
+        </Button>
+      </div>
     </div>
   );
 };
