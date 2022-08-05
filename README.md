@@ -28,3 +28,8 @@ config info
     },
    },
     ```
+# umi-plugin-tailwindcss
+  ```
+  yarn add umi-plugin-tailwindcss  -D 
+  ```
+自动引用tailwindcss 
