@@ -12,4 +12,5 @@ export default defineConfig({
     babelPlugins: [],
     babelOptions: {},
   },
+  devtool: 'eval',
 });

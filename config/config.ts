@@ -5,7 +5,6 @@ export default defineConfig({
   favicon: '/assets/favicon.svg',
   hash: true,
   ssr: {},
-  devtool: 'eval',
 
   exportStatic: {},
   nodeModulesTransform: {
@@ -28,7 +27,11 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
-
+  terserOptions: {
+    compress: {
+      drop_console: true,
+    },
+  },
   chainWebpack: function (config, { webpack }) {
     // config.plugin('antd-dayjs-webpack-plugin').use(AntdDayjsWebpackPlugin);
   },

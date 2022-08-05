@@ -19,4 +19,12 @@ config info
 2. 开启 ssr 
   1. locale 要关闭
   2. getInitialState 要关闭
-  
+3. devtool 开启后 副作用
+  1. 影响压缩移除log
+    js```
+     terserOptions: {
+    compress: {
+      drop_console: true,
+    },
+   },
+    ```
