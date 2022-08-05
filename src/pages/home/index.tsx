@@ -42,7 +42,7 @@ const Home: FC = () => {
             history.push('/layout/info');
           }}
         >
-          info
+          <div className="text-base	">info</div>
         </Button>
       </div>
     </div>
