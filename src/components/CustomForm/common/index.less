@@ -1,0 +1,16 @@
+.custom-label-container {
+  display: flex;
+  align-items: center;
+}
+.custom-label {
+  display: inline-block;
+  height: 22px;
+  overflow: hidden;
+  white-space: normal;
+  text-align: justify;
+  &::after {
+    display: inline-block;
+    width: 100px;
+    content: '';
+  }
+}

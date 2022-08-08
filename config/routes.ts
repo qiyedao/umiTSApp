@@ -1,7 +1,7 @@
 export default [
   {
     title: 'emotion',
-    path: '/',
+    path: '/emotion',
     component: '@/pages/emotion',
   },
   {
