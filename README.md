@@ -34,3 +34,16 @@ config info
  
   ```
 自动引用tailwindcss@2
+
+# node server
+关闭配置，浏览器有缓存
+```
+  hash: true,
+  exportStatic: {},
+```
+# node server-static
+开启配置，避免浏览器缓存
+```
+  hash: true,
+  exportStatic: {},
+```

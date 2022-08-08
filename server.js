@@ -9,7 +9,7 @@ const port = 8520;
 const domain = 'http://localhost';
 
 const sendStream = async (res, req, extname, filePath) => {
-  console.log('filePath', filePath);
+  console.log('filePath', filePath, 'extname', extname);
   if (!fs.existsSync(filePath)) return;
   let stream = null;
   let responseData = []; //存储文件流
@@ -44,6 +44,20 @@ const sendStream = async (res, req, extname, filePath) => {
       break;
     case '.png':
       res.setHeader('Content-Type', 'image/png');
+      stream = fs.createReadStream(filePath);
+      responseData = []; //存储文件流
+      if (stream) {
+        //判断状态
+        stream.on('data', function (chunk) {
+          res.write(chunk);
+        });
+        stream.on('end', function () {
+          res.end();
+        });
+      }
+      break;
+    case '.svg':
+      res.setHeader('Content-Type', 'image/svg');
       stream = fs.createReadStream(filePath);
       responseData = []; //存储文件流
       if (stream) {

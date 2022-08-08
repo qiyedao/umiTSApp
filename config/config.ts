@@ -3,9 +3,9 @@ import routes from './routes';
 
 export default defineConfig({
   favicon: '/assets/favicon.svg',
-  hash: true,
-  ssr: {},
 
+  ssr: {},
+  hash: true,
   exportStatic: {},
   nodeModulesTransform: {
     type: 'none',
