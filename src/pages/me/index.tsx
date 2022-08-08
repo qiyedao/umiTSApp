@@ -6,7 +6,7 @@ const ME: FC = () => {
       <div className="flex justify-center ">
         <Avatar onClick={() => {}} />
       </div>
-      <List>
+      <List style={{ '--padding-left': '0px', '--padding-right': '0px' }}>
         <List.Item onClick={() => {}}>账单</List.Item>
         <List.Item onClick={() => {}}>总资产</List.Item>
         <List.Item onClick={() => {}}>设置</List.Item>
