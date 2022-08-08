@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { Modal, Form, Button, Toast } from 'antd-mobile';
@@ -6,6 +6,9 @@ import {
   renderFormComponent,
   formArr,
 } from '@/components/CustomForm/common/index';
+import BaseForm from '@/components/CustomForm/BaseForm';
+import { FormInstance } from 'antd-mobile/es/components/form';
+import { ObjectType } from '@/typings';
 const Button2 = styled.div`
   width: 100px;
   height: 30px;
@@ -71,9 +74,12 @@ const columns = [
 ];
 export default () => {
   const [visible, setVisible] = useState(false);
-  const [form] = Form.useForm();
+  const [initialValues, setInitialValues] = useState({});
+
+  const [formRef] = Form.useForm();
   useEffect(() => {
-    form.setFieldsValue({
+    setInitialValues({
+      name: '1223',
       file: [
         {
           key: 'key',
@@ -85,12 +91,14 @@ export default () => {
       ],
     });
   }, []);
+
   return (
     <div css={buttonCss}>
       <Button2
         onClick={() => {
           console.log('click');
           setVisible(true);
+          console.log(formRef, 'ref');
         }}
       >
         <div className="btnclick"> click</div>
@@ -106,39 +114,24 @@ export default () => {
         content="hello"
         visible={visible}
       ></CustomModal>
-      <Form
-        hasFeedback={false}
-        form={form}
-        footer={
-          <Button
-            block
-            onClick={() => {
-              form.submit();
-            }}
-            color="primary"
-          >
-            submit
-          </Button>
-        }
-        onFinish={(values) => {
-          console.log(values, 'values');
+      <BaseForm
+        columns={columns}
+        initialValues={initialValues}
+        formRef={formRef}
+        footer={false}
+        onFinish={function (values: ObjectType): void {
+          console.log(values, 'onFinish values');
         }}
-        onFinishFailed={(error) => {
-          console.log(error);
-          const { errorFields } = error;
-          if (errorFields && errorFields.length) {
-            Toast.show({
-              icon: 'fail',
-              content: errorFields[0].errors[0],
-            });
-          }
+      />
+      <Button
+        block
+        onClick={() => {
+          formRef.submit();
         }}
-        layout="horizontal"
+        color="primary"
       >
-        {columns.map((item, index) => (
-          <div key={index}>{renderFormComponent(item)}</div>
-        ))}
-      </Form>
+        formRef
+      </Button>
     </div>
   );
 };
