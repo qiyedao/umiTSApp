@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import BaseUpload from '../../BaseUpload';
-import { DeleteOutline, DownOutline } from 'antd-mobile-icons';
+import { DeleteOutline, DownlandOutline } from 'antd-mobile-icons';
+import { Toast } from 'antd-mobile';
 import './index.less';
 const CustomUpload = ({
   value,
@@ -46,24 +47,33 @@ const CustomUpload = ({
       divList.push(
         <div key={index} className="custom-upload-file">
           <span className="custom-upload-file-name">{item.name}</span>
-          <span className="custom-upload-file-action">
-            <DownOutline
-              onClick={() => {
-                handleDownload();
-              }}
-            />
-            <DeleteOutline
-              onClick={() => {
-                handleDelete(index);
-              }}
-            />
+          <span className="custom-upload-file-actions">
+            <span className="custom-upload-file-action">
+              <DownlandOutline
+                onClick={() => {
+                  handleDownload();
+                }}
+              />
+            </span>
+
+            <span className="custom-upload-file-action">
+              <DeleteOutline
+                onClick={() => {
+                  handleDelete(index);
+                }}
+              />
+            </span>
           </span>
         </div>,
       );
     });
     return divList;
   };
-  const handleDownload = () => {};
+  const handleDownload = () => {
+    Toast.show({
+      content: '开始下载',
+    });
+  };
   const handleDelete = (index) => {
     if (fileList.length == 1) {
       onChange?.(null);

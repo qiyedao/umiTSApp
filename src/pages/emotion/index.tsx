@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Modal, Form, Button } from 'antd-mobile';
+import { Modal, Form, Button, Toast } from 'antd-mobile';
 import {
   renderFormComponent,
   formArr,
@@ -43,7 +43,10 @@ const columns = [
     labelName: '姓名：',
     name: 'name',
     fieldProps: {
-      rules: [{ required: true, message: '请输入' }],
+      rules: [
+        { type: 'string', required: true },
+        { type: 'string', min: 6, message: '最少6个字符' },
+      ],
     },
   },
   {
@@ -71,8 +74,6 @@ export default () => {
   const [form] = Form.useForm();
   useEffect(() => {
     form.setFieldsValue({
-      name: 'name',
-      remark: 'remark',
       file: [
         {
           key: 'key',
@@ -106,9 +107,31 @@ export default () => {
         visible={visible}
       ></CustomModal>
       <Form
+        hasFeedback={false}
         form={form}
+        footer={
+          <Button
+            block
+            onClick={() => {
+              form.submit();
+            }}
+            color="primary"
+          >
+            submit
+          </Button>
+        }
         onFinish={(values) => {
           console.log(values, 'values');
+        }}
+        onFinishFailed={(error) => {
+          console.log(error);
+          const { errorFields } = error;
+          if (errorFields && errorFields.length) {
+            Toast.show({
+              icon: 'fail',
+              content: errorFields[0].errors[0],
+            });
+          }
         }}
         layout="horizontal"
       >
@@ -116,14 +139,6 @@ export default () => {
           <div key={index}>{renderFormComponent(item)}</div>
         ))}
       </Form>
-      <Button
-        onClick={() => {
-          form.submit();
-        }}
-        color="primary"
-      >
-        submit
-      </Button>
     </div>
   );
 };

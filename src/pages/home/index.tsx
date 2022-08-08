@@ -25,7 +25,9 @@ const Home: FC = () => {
   ));
   return (
     <div>
-      <Swiper autoplay>{items}</Swiper>
+      <Swiper autoplay loop>
+        {items}
+      </Swiper>
 
       <Button
         color="primary"
