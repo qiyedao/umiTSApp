@@ -1,5 +1,10 @@
 export default [
   {
+    title: 'emotion',
+    path: '/',
+    component: '@/pages/emotion',
+  },
+  {
     name: 'content',
     path: '/layout',
     component: '@/layout/ContentLayout',

@@ -13,6 +13,15 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/components/Loading',
   },
+  extraBabelPresets: [
+    [
+      '@emotion/babel-preset-css-prop',
+      {
+        autoLabel: 'dev-only',
+        labelFormat: '[local]',
+      },
+    ],
+  ],
   dva: {},
   antdMobile: {},
   ignoreMomentLocale: true,
