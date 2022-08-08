@@ -1,7 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import { useHistory } from 'umi';
-import { Button, DotLoading, Swiper, Toast } from 'antd-mobile';
+import { Button, Image, Swiper, Toast } from 'antd-mobile';
 import styles from './index.less';
+import { ObjectType } from '@/typings';
+import classNames from 'classnames';
 const Home: FC = () => {
   const history = useHistory();
   useEffect(() => {
@@ -13,7 +15,7 @@ const Home: FC = () => {
   const items = colors.map((color, index) => (
     <Swiper.Item key={index}>
       <div
-        className={styles.content}
+        className={styles.swiperContent}
         style={{ background: color }}
         onClick={() => {
           Toast.show(`你点击了卡片 ${index + 1}`);
@@ -23,46 +25,32 @@ const Home: FC = () => {
       </div>
     </Swiper.Item>
   ));
+
+  const renderMenu = (list: ObjectType[]) => {
+    let divList: React.ReactNode[] = [];
+    list.map((item, index) => {
+      divList.push(
+        <div
+          className={classNames(
+            styles.menu,
+            'flex justify-content flex-col items-center',
+          )}
+          key={index}
+        >
+          <Image className={styles.icon} src="" />
+          <div className={styles.title}>{item.title}</div>
+        </div>,
+      );
+    });
+    return divList;
+  };
   return (
     <div>
       <Swiper autoplay loop>
         {items}
       </Swiper>
-
-      <Button
-        color="primary"
-        fill="solid"
-        onClick={() => {
-          console.log('info');
-
-          history.push('/layout/info');
-        }}
-      >
-        info
-      </Button>
-      <div className="flex 	justify-between items-center	">
-        <Button
-          color="primary"
-          fill="solid"
-          onClick={() => {
-            console.log('info');
-
-            history.push('/layout/info');
-          }}
-        >
-          info
-        </Button>{' '}
-        <Button
-          color="primary"
-          fill="solid"
-          onClick={() => {
-            console.log('info');
-
-            history.push('/layout/info');
-          }}
-        >
-          <div className="text-base	">info</div>
-        </Button>
+      <div className={styles.content}>
+        {renderMenu([{ title: 'title', url: 'url' }])}
       </div>
     </div>
   );
