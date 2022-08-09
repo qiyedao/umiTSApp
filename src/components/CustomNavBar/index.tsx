@@ -21,8 +21,21 @@ const CustomNavBar: FC<NavBarProps> = ({
   const [title, setTitle] = useState('');
   useEffect(() => {
     console.log('match', match);
+    const lastIndex = location.pathname && location.pathname.lastIndexOf('/');
 
-    const currentRoute: ObjectType = getCurrentRoute(routes, location.pathname);
+    let pathname = location.pathname;
+    if (lastIndex > -1 && lastIndex === location.pathname.length - 1) {
+      pathname = pathname.substring(0, lastIndex);
+    }
+    console.log(
+      'lastIndex',
+      lastIndex,
+      location.pathname,
+      location.pathname.length,
+      'pathname',
+      pathname,
+    );
+    const currentRoute: ObjectType = getCurrentRoute(routes, pathname);
     setTitle(currentRoute?.title);
   }, [location.pathname]);
   const back = () => {

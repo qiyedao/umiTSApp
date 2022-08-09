@@ -34,6 +34,9 @@ const Home: FC = () => {
     list.map((item, index) => {
       divList.push(
         <div
+          onClick={() => {
+            history.push('/layout/info');
+          }}
           className={classNames(
             styles.menu,
             'flex justify-content flex-col items-center',
