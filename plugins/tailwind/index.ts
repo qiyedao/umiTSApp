@@ -13,7 +13,7 @@ function getTailwindConfigFilePath(api: IApi) {
   return configFile;
 }
 
-export default (api: IApi) => {
+module.exports = (api: IApi) => {
   api.describe({
     key: 'tailwindcss',
     config: {
