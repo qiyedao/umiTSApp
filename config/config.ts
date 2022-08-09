@@ -4,12 +4,12 @@ import routes from './routes';
 export default defineConfig({
   favicon: '/assets/favicon.svg',
   plugins: [
-    './plugins/favicon/changeFavicon.ts',
-    // './plugins/tailwind/index.ts',
+    './plugins/favicon/customFavicon.ts',
+    './plugins/tailwind/index.ts',
   ],
   tailwindcss: {
-    tailwindCssFilePath: '@/tailwind.css',
-    tailwindConfigFilePath: 'tailwind-custom.config.js', // 默认取值 tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),,
+    // tailwindCssFilePath: '@/tailwind.css',//指定后需手动创建文件
+    tailwindConfigFilePath: 'tailwind.config.js', // 默认取值 tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),,
   },
   ssr: {},
   hash: true,

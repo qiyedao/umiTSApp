@@ -1,9 +1,8 @@
 import { IApi, IConfig } from 'umi';
 
 module.exports = (api: IApi) => {
-  console.log('api');
   api.describe({
-    key: 'changeFavicon',
+    key: 'customFavicon',
     config: {
       schema(joi) {
         return joi.string();
@@ -13,7 +12,7 @@ module.exports = (api: IApi) => {
   });
   api.modifyConfig((memo) => {
     console.log('memo', memo.favicons, 'memo', memo.favicon);
-    memo.favicons = [api.userConfig.changeFavicon];
+    memo.favicons = [api.userConfig.customFavicon];
     return memo;
   });
 };

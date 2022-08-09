@@ -25,7 +25,9 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "antd-mobile": "^5.20.0",
+    "autoprefixer": "9.x",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.3",
     "mockjs": "^1.1.0",
@@ -48,7 +50,6 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "typescript": "^4.1.2",
-    "umi-plugin-tailwindcss": "^3.2.1",
     "yorkie": "^2.0.0"
   }
 }
