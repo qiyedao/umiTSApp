@@ -10,7 +10,7 @@ const Home: FC = () => {
   useEffect(() => {
     console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
 
-    wx.config({});
+    window.wx.config({});
   }, []);
 
   const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac'];
