@@ -1,15 +1,17 @@
+import { ObjectType } from '@/typings';
+
 /**
  *获取导航标题
  */
 export const getCurrentRoute = (routes: any, path: string) => {
-  let res = '';
+  let res: ObjectType = {};
   routes.map((item: any) => {
     if (item.path === path) {
       res = item;
     }
     if (item.routes && item.routes.length) {
       const child = getCurrentRoute(item.routes, path);
-      if (child) {
+      if (child.path) {
         res = child;
       }
     }

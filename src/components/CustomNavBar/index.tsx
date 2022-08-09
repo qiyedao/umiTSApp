@@ -4,6 +4,7 @@ import { LeftOutline } from 'antd-mobile-icons';
 import { useHistory, useLocation, useRouteMatch } from 'umi';
 import { getCurrentRoute } from '@/utils/util';
 import routes from '../../../config/routes';
+import { ObjectType } from '@/typings';
 interface NavBarProps {
   backArrow?: boolean;
   showTitle?: boolean;
@@ -21,7 +22,7 @@ const CustomNavBar: FC<NavBarProps> = ({
   useEffect(() => {
     console.log('match', match);
 
-    const currentRoute = getCurrentRoute(routes, location.pathname);
+    const currentRoute: ObjectType = getCurrentRoute(routes, location.pathname);
     setTitle(currentRoute?.title);
   }, [location.pathname]);
   const back = () => {
