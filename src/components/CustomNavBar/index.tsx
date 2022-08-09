@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavBar } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
-import { useHistory, useLocation } from 'umi';
+import { useHistory, useLocation, useRouteMatch } from 'umi';
 import { getCurrentRoute } from '@/utils/util';
 import routes from '../../../config/routes';
 interface NavBarProps {
@@ -16,8 +16,11 @@ const CustomNavBar: FC<NavBarProps> = ({
 }) => {
   const history = useHistory();
   const location = useLocation();
+  const match = useRouteMatch();
   const [title, setTitle] = useState('');
   useEffect(() => {
+    console.log('match', match);
+
     const currentRoute = getCurrentRoute(routes, location.pathname);
     setTitle(currentRoute?.title);
   }, [location.pathname]);
