@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001   UMI_ENV=dev umi dev ",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001 COMPRESS=none   UMI_ENV=dev umi dev ",
     "start:no-mock": "cross-env PORT=8001 REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
     "start:https": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001   UMI_ENV=dev umi dev ",
     "build": "cross-env  umi build",

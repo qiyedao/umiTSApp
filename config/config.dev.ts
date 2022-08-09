@@ -13,4 +13,5 @@ export default defineConfig({
     babelOptions: {},
   },
   devtool: 'false',
+  ssr: undefined,
 });
