@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001  UMI_ENV=dev umi dev ",
-    "start:dev": "cross-env PORT=8001 REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001   UMI_ENV=dev umi dev ",
+    "start:no-mock": "cross-env PORT=8001 REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
+    "start:https": "cross-env NODE_OPTIONS=--max_old_space_size=1256 PORT=8001   UMI_ENV=dev umi dev ",
     "build": "cross-env  umi build",
     "build:esbuild": "cross-env UMI_ENV=esbuild  umi build",
     "analyze": "cross-env ANALYZE=1 umi build",
@@ -32,11 +33,10 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.11.3",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.3",
     "react": "17.x",
     "react-dev-inspector": "^1.8.1",
     "react-dom": "17.x",
-    "umi": "3.5.26"
+    "umi": "3.5.32"
   },
   "devDependencies": {
     "@emotion/babel-preset-css-prop": "^11.10.0",

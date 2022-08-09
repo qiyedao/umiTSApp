@@ -4,9 +4,12 @@ import { Button, Image, Swiper, Toast } from 'antd-mobile';
 import styles from './index.less';
 import { ObjectType } from '@/typings';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 const Home: FC = () => {
   const history = useHistory();
   useEffect(() => {
+    console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
+
     wx.config({});
   }, []);
 

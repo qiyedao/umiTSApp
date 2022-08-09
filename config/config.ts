@@ -31,7 +31,6 @@ export default defineConfig({
   ],
   dva: {},
   antdMobile: {},
-  ignoreMomentLocale: true,
   // locale: {
   //   // default zh-CN
   //   default: 'zh-CN',
