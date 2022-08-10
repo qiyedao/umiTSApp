@@ -1,4 +1,5 @@
 import { defineConfig } from 'umi';
+import { setFontSize } from './headScripts';
 import routes from './routes';
 
 export default defineConfig({
@@ -17,6 +18,20 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  metas: [
+    {
+      name: 'App-Config',
+      content: 'fullscreen=yes,useHistoryState=yes,transition=yes',
+    },
+    { name: 'yes', content: 'apple-mobile-web-app-capable' },
+    { name: 'yes', content: 'apple-touch-fullscreen' },
+    { name: 'aplus-waiting', content: 'MAN' },
+    {
+      name: 'viewport',
+      content:
+        'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover',
+    },
+  ],
   dynamicImport: {
     loading: '@/components/Loading',
   },
@@ -41,7 +56,7 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
-  headScripts: [{ src: '/jweixin-1.6.0.js' }],
+  headScripts: [{ src: '/jweixin-1.6.0.js' }, setFontSize],
   terserOptions: {
     compress: {
       drop_console: true,

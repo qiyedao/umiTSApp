@@ -1,6 +1,7 @@
 @import url(../../global.less);
 .app {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
 }
@@ -16,7 +17,7 @@
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
-  padding: 0 12px;
+  -webkit-overflow-scrolling: touch;
   .main {
     width: 100%;
     height: 100%;
@@ -26,4 +27,8 @@
 .bottom {
   flex: 0;
   border-top: solid 1px var(--adm-color-border);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: #fff;
 }

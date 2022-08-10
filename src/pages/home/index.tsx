@@ -19,10 +19,10 @@ const Home: FC = () => {
       resolve({ status: 'success' });
     });
   };
-  const { data, run, cancel } = useRequest(queryStatus, {
-    pollingInterval: 3000,
-  });
-  console.log('data', data);
+  // const { data, run, cancel } = useRequest(queryStatus, {
+  //   pollingInterval: 3000,
+  // });
+  console.log('data');
 
   const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac'];
 
@@ -63,12 +63,20 @@ const Home: FC = () => {
   };
   return (
     <div>
-      <Swiper autoplay loop>
-        {items}
-      </Swiper>
-      <div className={styles.content}>
-        {renderMenu([{ title: 'title', url: 'url' }])}
+      <Swiper loop>{items}</Swiper>
+      <div
+        className={classNames(
+          styles.content,
+          'flex items-center justify-between',
+        )}
+      >
+        {renderMenu([
+          { title: 'title', url: 'url' },
+          { title: 'title', url: 'url' },
+          { title: 'title', url: 'url' },
+        ])}
       </div>
+      <div>umi 脚手架</div>
     </div>
   );
 };

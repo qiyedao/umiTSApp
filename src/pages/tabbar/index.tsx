@@ -57,6 +57,7 @@ export default (props: { children: React.ReactNode }) => {
       <div className={styles.body}>
         <div className={styles.main}>{props.children}</div>
       </div>
+      <div className="adm-tab-bar-wrap"></div>
       <div className={styles.bottom}>
         <Bottom />
       </div>
