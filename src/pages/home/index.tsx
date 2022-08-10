@@ -5,6 +5,7 @@ import styles from './index.less';
 import { ObjectType } from '@/typings';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import { useRequest } from 'ahooks';
 const Home: FC = () => {
   const history = useHistory();
   useEffect(() => {
@@ -12,6 +13,16 @@ const Home: FC = () => {
 
     window.wx.config({});
   }, []);
+  const queryStatus = () => {
+    return new Promise((resolve, reject) => {
+      console.log('status');
+      resolve({ status: 'success' });
+    });
+  };
+  const { data, run, cancel } = useRequest(queryStatus, {
+    pollingInterval: 3000,
+  });
+  console.log('data', data);
 
   const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac'];
 

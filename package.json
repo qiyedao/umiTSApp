@@ -28,6 +28,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
+    "ahooks": "^3.7.0",
     "antd-mobile": "^5.20.0",
     "autoprefixer": "9.x",
     "classnames": "^2.3.1",
