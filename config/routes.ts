@@ -5,6 +5,11 @@ export default [
     component: '@/pages/emotion',
   },
   {
+    title: 'list',
+    path: '/list',
+    component: '@/pages/list',
+  },
+  {
     name: 'content',
     path: '/layout',
     component: '@/layout/ContentLayout',
