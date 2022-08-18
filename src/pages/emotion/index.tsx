@@ -9,6 +9,7 @@ import {
 import BaseForm from '@/components/CustomForm/BaseForm';
 import { FormInstance } from 'antd-mobile/es/components/form';
 import { ObjectType } from '@/typings';
+import { currentUser } from '@/services/user/api';
 const Button2 = styled.div`
   width: 100px;
   height: 30px;
@@ -92,6 +93,11 @@ export default () => {
     });
   }, []);
 
+  const handleCurrent = async () => {
+    try {
+      const res = currentUser();
+    } catch (error) {}
+  };
   return (
     <div css={buttonCss}>
       <Button2

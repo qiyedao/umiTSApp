@@ -23,7 +23,7 @@ const codeMessage = {
 };
 /** 异常处理程序 */
 
-const errorHandler = (error) => {
+const errorHandler = (error: any) => {
   return Promise.reject(error);
 };
 /** 配置request请求时的默认参数 */
@@ -52,8 +52,8 @@ request.interceptors.request.use((url, options) => {
 request.interceptors.response.use(async (response) => {
   const { url } = response;
   console.log('interceptors response===>', 'response', response);
-  const IgnoreJSON = [];
-  let data = '';
+  const IgnoreJSON: string[] = [];
+  let data: any = '';
   if (IsNoExist(response.url, IgnoreJSON)) {
     data = await response.clone().json();
     console.log('response', data);
