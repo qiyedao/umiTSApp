@@ -28,7 +28,7 @@ export const getCityLabel = (area = []) => {
   }
 };
 
-export const IsNoExist = (url: string, arr = []) => {
+export const IsNoExist = (url: string, arr: string[] = []) => {
   let index = arr.findIndex((item) => url.indexOf(item) > -1);
   return index == -1;
 };
