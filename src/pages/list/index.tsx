@@ -3,49 +3,53 @@ import TabList from '@/components/CustomList/tabList';
 import React, { useState } from 'react';
 export default () => {
   const [activeKey, setActiveKey] = useState('A1');
+  const [pageNum, setPageNum] = useState(1);
+
   const requst = () => {
     if (activeKey === 'A') {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([
-            'A1',
-            'A2',
-            'A33',
-            'A1',
-            'A2',
-            'A33',
-            'A1',
-            'A2',
-            'A33',
-            'A1',
-            'A2',
-            'A33',
-            'A1',
-            'A2',
-            'A33',
+            '0A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
           ]);
+          setPageNum(pageNum + 1);
         }, 1000);
       });
     } else {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([
-            '1',
-            '2',
-            '33',
-            '1',
-            '2',
-            '33',
-            '1',
-            '2',
-            '33',
-            '1',
-            '2',
-            '33',
-            '1',
-            '2',
-            '33',
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
+            'A' + pageNum,
           ]);
+          setPageNum(pageNum + 1);
         }, 1000);
       });
     }
@@ -66,6 +70,7 @@ export default () => {
       activeKey={activeKey}
       onChangeTab={(key) => {
         setActiveKey(key);
+        setPageNum(1);
       }}
     />
   );
