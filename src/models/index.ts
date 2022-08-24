@@ -2,6 +2,7 @@ import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
 
 export interface IndexModelState {
   name: string;
+  prevPath: string;
 }
 
 export interface IndexModelType {
@@ -25,6 +26,7 @@ const IndexModel: IndexModelType = {
 
   state: {
     name: 'hello',
+    prevPath: '',
   },
 
   effects: {

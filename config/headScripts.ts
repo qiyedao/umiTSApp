@@ -8,21 +8,20 @@ function getMaxValue(num1, num2, num3) {
   } else {
     value = num2;
   }
-  if (value < num3) {
-    value = num3;
-  }
+  // if (value < num3) {
+  //   value = num3;
+  // }
   return value;
 }
 const setView = () => {
   setTimeout(function () {
-    var scrollHeight = getMaxValue(
-      document.documentElement.clientHeight,
-      document.body.clientHeight,
-      window.screen.height,
-    );
+    // var scrollHeight = getMaxValue(
+    //   document.documentElement.clientHeight,
+    //   document.body.clientHeight,
+    //   window.screen.height,
+    // );
     var scrollwidth = getMaxValue(
       document.documentElement.clientWidth,
-      document.body.clientWidth,
       window.screen.width,
     );
     console.log(scrollwidth, 'scrollwidth');

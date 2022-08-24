@@ -1,17 +1,18 @@
 import React, { FC, useEffect } from 'react';
-import { useHistory } from 'umi';
+import { useHistory, connect } from 'umi';
 import { Button, Image, Swiper, Toast } from 'antd-mobile';
 import styles from './index.less';
 import { ObjectType } from '@/typings';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { useRequest } from 'ahooks';
-const Home: FC = () => {
+const Home: FC = (props) => {
   const history = useHistory();
   useEffect(() => {
     console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
 
     window.wx.config({});
+    console.log('props', props);
   }, []);
   const queryStatus = () => {
     return new Promise((resolve, reject) => {
@@ -32,7 +33,7 @@ const Home: FC = () => {
         className={styles.swiperContent}
         style={{ background: color }}
         onClick={() => {
-          Toast.show(`你点击了卡片 ${index + 1}`);
+          Toast.show(`你点击了卡片${props.name}`);
         }}
       >
         {index + 1}
@@ -80,4 +81,4 @@ const Home: FC = () => {
     </div>
   );
 };
-export default Home;
+export default connect(({ index }) => index)(Home);
