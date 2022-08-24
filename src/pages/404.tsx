@@ -8,7 +8,10 @@ const NoFoundPage: React.FC = () => (
     title="404"
     subTitle="页面不存在"
     extra={
-      <Button type="primary" onClick={() => history.push('/')}>
+      <Button
+        type="primary"
+        onClick={() => history.push('/' + window.location.search)}
+      >
         回首页
       </Button>
     }

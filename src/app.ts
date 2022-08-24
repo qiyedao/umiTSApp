@@ -13,7 +13,7 @@ export function onRouteChange({ location, routes, action }) {
   const state = _store.getState();
 
   if (state.index.prevPath !== location.pathname) {
-    console.log('onRouteChange dvaApp', dvaApp, 'path', state.index);
+    console.log('onRouteChange', 'path', location.pathname, state.index);
     _store.dispatch({
       type: 'index/save',
       payload: {
@@ -24,21 +24,4 @@ export function onRouteChange({ location, routes, action }) {
   }
 
   window.scroll(0, 0);
-}
-export function render(oldRender) {
-  oldRender();
-}
-export function modifyClientRenderOpts(memo) {
-  const dvaApp = getDvaApp();
-
-  console.log(
-    'modifyClientRenderOpts dvaApp',
-    dvaApp,
-    'path',
-    window.location.pathname,
-  );
-
-  return {
-    ...memo,
-  };
 }
