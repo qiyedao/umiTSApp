@@ -7,6 +7,7 @@
     "build": "cross-env  umi build",
     "build:esbuild": "cross-env UMI_ENV=esbuild  umi build",
     "analyze": "cross-env ANALYZE=1 umi build",
+    "analyze:ssr": "cross-env ANALYZE_SSR=1 umi build",
     "lint-staged": "lint-staged",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
     "postinstall": "umi generate tmp",
