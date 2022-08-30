@@ -14,4 +14,7 @@ export default defineConfig({
   },
   devtool: 'false',
   ssr: undefined,
+  targets: {
+    ie: 11,
+  },
 });
