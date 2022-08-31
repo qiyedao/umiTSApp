@@ -77,9 +77,18 @@ export default (props) => {
       ),
       duration: 0,
     });
-    return;
+    // return;
     try {
-      const res = await commonFormUpload(formData, uploadUrl);
+      const res = await commonFormUpload(
+        formData,
+        (e) => {
+          console.log('onUpload', e);
+        },
+        (e) => {
+          console.log('onDownload', e);
+        },
+        uploadUrl,
+      );
       if (res && res.status.code === 1) {
         const result = res.result;
         onProgress({ percent: 100 }, file);
