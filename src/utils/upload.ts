@@ -1,10 +1,16 @@
 import request from '@/utils/request';
 import Apis from '../services/Apis';
+import { ProgressHandler } from './middleWare';
 
 const path = Apis.CommonUpload;
 const delPath = Apis.DeleteFile;
 
-export async function commonFormUpload(data, uploadUrl) {
+export async function commonFormUpload(
+  data: any,
+  onUploadProgress?: ProgressHandler,
+  onDownloadProgress?: ProgressHandler,
+  uploadUrl?: string,
+) {
   let url = uploadUrl;
   if (!url) {
     url = path;
@@ -13,9 +19,11 @@ export async function commonFormUpload(data, uploadUrl) {
     method: 'post',
     data,
     requestType: 'form',
+    onUploadProgress,
+    onDownloadProgress,
   });
 }
-export async function commonDelUpload(data) {
+export async function commonDelUpload(data: any) {
   return request(delPath, {
     method: 'delete',
     data,
@@ -23,7 +31,7 @@ export async function commonDelUpload(data) {
   });
 }
 
-export async function commonDelListUpload(data) {
+export async function commonDelListUpload(data: any) {
   return request(`${delPath}/list`, {
     method: 'delete',
     data,
@@ -37,7 +45,7 @@ export async function commonDelListUpload(data) {
  * @returns
  */
 //导出
-export async function exportFile(params, url) {
+export async function exportFile(params: any, url: any) {
   return request(`${url}`, {
     method: 'get',
     params,

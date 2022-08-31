@@ -3,7 +3,7 @@ import { notification } from 'antd';
 import { extend } from 'umi-request';
 import { IsNoExist } from './utils';
 const isDev = process.env.NODE_ENV === 'development';
-
+import progressMiddleware from './middleWare/index';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新增或修改数据成功。',
@@ -37,6 +37,7 @@ const request = extend({
   // },
 });
 
+request.use(progressMiddleware, { core: true });
 request.interceptors.request.use((url, options) => {
   // 自定义携带用户信息
   // if (userInfo && userInfo.token) {
