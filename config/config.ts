@@ -14,6 +14,7 @@ export default defineConfig({
   },
   ssr: {},
   hash: true,
+  esbuild: {},
   exportStatic: {},
   nodeModulesTransform: {
     type: 'none',
@@ -62,14 +63,14 @@ export default defineConfig({
       drop_console: true,
     },
   },
-  webpack5: {},
+  // webpack5: {},
   chunks: [
-    'vendors',
     'reactdom',
     'reactspring',
     'corejs',
     'antdm',
     'antd',
+    'vendors',
     'umi',
   ],
   chainWebpack: (config) => {
@@ -79,7 +80,7 @@ export default defineConfig({
         splitChunks: {
           chunks: 'async',
           minSize: 30000,
-          minChunks: 2,
+          minChunks: 1,
           automaticNameDelimiter: '.',
           cacheGroups: {
             reactdom: {
@@ -117,7 +118,7 @@ export default defineConfig({
               priority: 8,
               enforce: true,
             },
-            vendor: {
+            vendors: {
               name: 'vendors',
               test({ resource }) {
                 return /[\\/]node_modules[\\/]/.test(resource);
