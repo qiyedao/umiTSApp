@@ -18,4 +18,6 @@ export default defineConfig({
     ie: 11,
   },
   webpack5: undefined,
+  chunks: undefined,
+  chainWebpack: undefined,
 });

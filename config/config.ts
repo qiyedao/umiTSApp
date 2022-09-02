@@ -12,7 +12,7 @@ export default defineConfig({
     // tailwindCssFilePath: '@/tailwind.css',//指定后需手动创建文件
     tailwindConfigFilePath: 'tailwind.config.js', // 默认取值 tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),,
   },
-  ssr: {},
+  ssr: { mode: 'stream' },
   hash: true,
   // esbuild: {},
   exportStatic: {},
@@ -45,6 +45,8 @@ export default defineConfig({
       },
     ],
   ],
+  inlineLimit: 10,
+
   dva: {},
   antdMobile: {},
   // locale: {
@@ -66,12 +68,13 @@ export default defineConfig({
   // webpack5: {},
   chunks: [
     'reactdom',
-    'reactspring',
     'corejs',
-    'antdm',
-    'antd',
+
     'vendors',
     'umi',
+    'antdm',
+    'reactspring',
+    'antd',
   ],
   chainWebpack: (config) => {
     config.merge({

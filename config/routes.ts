@@ -35,6 +35,7 @@ export default [
         title: 'home',
         path: '/',
         component: '@/pages/home',
+        access: 'canAdmin',
       },
       {
         title: 'me',

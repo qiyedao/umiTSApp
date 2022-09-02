@@ -1,18 +1,21 @@
-import { Button, Result } from 'antd';
+import { Button, Result } from 'antd-mobile';
 import React from 'react';
 import { history } from 'umi';
-
 const NoFoundPage: React.FC = () => (
-  <Result
-    status="403"
-    title="403"
-    subTitle="无权访问"
-    extra={
-      <Button type="primary" onClick={() => history.push('/')}>
-        回首页
-      </Button>
-    }
-  />
+  <div className=" h-full w-full bg-stone-400">
+    <Result
+      status="error"
+      title="无权访问"
+      description={
+        <Button
+          color="primary"
+          onClick={() => history.push('/' + window.location.search)}
+        >
+          回主页
+        </Button>
+      }
+    />
+  </div>
 );
 
 export default NoFoundPage;
