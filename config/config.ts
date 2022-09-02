@@ -62,7 +62,71 @@ export default defineConfig({
       drop_console: true,
     },
   },
-  chainWebpack: function (config, { webpack }) {
-    // config.plugin('antd-dayjs-webpack-plugin').use(AntdDayjsWebpackPlugin);
+  webpack5: {},
+  chunks: [
+    'vendors',
+    'reactdom',
+    'reactspring',
+    'corejs',
+    'antdm',
+    'antd',
+    'umi',
+  ],
+  chainWebpack: (config) => {
+    config.merge({
+      optimization: {
+        minimize: true,
+        splitChunks: {
+          chunks: 'async',
+          minSize: 30000,
+          minChunks: 2,
+          automaticNameDelimiter: '.',
+          cacheGroups: {
+            reactdom: {
+              name: 'reactdom',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]react-dom[\\/]/,
+              priority: 16,
+              enforce: true,
+            },
+            reactspring: {
+              name: 'reactspring',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]@react-spring[\\/]/,
+              priority: 14,
+              enforce: true,
+            },
+            corejs: {
+              name: 'corejs',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]core-js[\\/]/,
+              priority: 12,
+              enforce: true,
+            },
+            antdm: {
+              name: 'antdm',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]antd-mobile[\\/]/,
+              priority: 10,
+              enforce: true,
+            },
+            antd: {
+              name: 'antd',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/](antd|@ant-design)/,
+              priority: 8,
+              enforce: true,
+            },
+            vendor: {
+              name: 'vendors',
+              test({ resource }) {
+                return /[\\/]node_modules[\\/]/.test(resource);
+              },
+              priority: 1,
+            },
+          },
+        },
+      },
+    });
   },
 });

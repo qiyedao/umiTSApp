@@ -17,4 +17,5 @@ export default defineConfig({
   targets: {
     ie: 11,
   },
+  webpack5: undefined,
 });
