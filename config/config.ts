@@ -67,12 +67,11 @@ export default defineConfig({
   },
   // webpack5: {},
   chunks: [
-    'reactdom',
-    'corejs',
-
     'vendors',
     'umi',
+    'reactdom',
     'antdm',
+    'corejs',
     'reactspring',
     'antd',
   ],
