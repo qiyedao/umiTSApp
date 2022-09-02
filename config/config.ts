@@ -14,7 +14,7 @@ export default defineConfig({
   },
   ssr: {},
   hash: true,
-  esbuild: {},
+  // esbuild: {},
   exportStatic: {},
   nodeModulesTransform: {
     type: 'none',
