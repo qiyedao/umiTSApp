@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DotLoading, SpinLoading } from 'antd-mobile';
-
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 export default () => {
+  useEffect(() => {
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+    console.log('loading start');
+    return () => {
+      NProgress.done();
+      console.log('loading done');
+    };
+  }, []);
   return (
     <div
       style={{
@@ -11,10 +21,6 @@ export default () => {
         height: '100%',
         width: '100%',
       }}
-    >
-      <span style={{ fontSize: 24 }}>
-        <SpinLoading color={'primary'} />
-      </span>
-    </div>
+    ></div>
   );
 };
