@@ -5,7 +5,10 @@
   <meta charset="utf-8" />
   <title>Your App</title>
   <link rel="icon" type="image/x-icon" href="<%= context.config.publicPath %>assets/favicon.jpeg" />
-
+  <script>
+    let context = '<%= context.config.publicPath %>'
+    console.log('context', context);
+  </script>
 </head>
 
 <body>
