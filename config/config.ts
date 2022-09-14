@@ -3,7 +3,7 @@ import { setFontSize } from './headScripts';
 import routes from './routes';
 
 export default defineConfig({
-  favicon: '/assets/favicon.svg',
+  // favicon: '/assets/favicon.svg',
   plugins: [
     './plugins/favicon/customFavicon.ts',
     './plugins/tailwind/index.ts',
