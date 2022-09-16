@@ -6,6 +6,7 @@ import { ObjectType } from '@/typings';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { useRequest } from 'ahooks';
+import CustomSkeleton from '@/components/CustomSkeleton';
 const Home: FC = (props) => {
   const history = useHistory();
   useEffect(() => {
@@ -64,20 +65,7 @@ const Home: FC = (props) => {
   };
   return (
     <div>
-      <Swiper loop>{items}</Swiper>
-      <div
-        className={classNames(
-          styles.content,
-          'flex items-center justify-between',
-        )}
-      >
-        {renderMenu([
-          { title: 'title', url: 'url' },
-          { title: 'title', url: 'url' },
-          { title: 'title', url: 'url' },
-        ])}
-      </div>
-      <div>umi 脚手架</div>
+      <CustomSkeleton />
     </div>
   );
 };
