@@ -63,10 +63,6 @@ const Home: FC = (props) => {
     });
     return divList;
   };
-  return (
-    <div>
-      <CustomSkeleton />
-    </div>
-  );
+  return <div>{renderMenu([{ title: '123' }])}</div>;
 };
 export default connect(({ index }) => index)(Home);
