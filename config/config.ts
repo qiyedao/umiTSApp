@@ -73,7 +73,7 @@ export default defineConfig({
   headScripts: [
     { src: '/jweixin-1.6.0.js' },
     setFontSize,
-    { src: 'https://unpkg.com/vconsole@3.14.7/dist/vconsole.min.js' },
+    { src: '/vconsole.min.js' },
   ],
   terserOptions: {
     compress: {
