@@ -70,7 +70,11 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
-  headScripts: [{ src: '/jweixin-1.6.0.js' }, setFontSize],
+  headScripts: [
+    { src: '/jweixin-1.6.0.js' },
+    setFontSize,
+    { src: 'https://unpkg.com/vconsole@3.14.7/dist/vconsole.min.js' },
+  ],
   terserOptions: {
     compress: {
       drop_console: true,

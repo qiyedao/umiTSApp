@@ -1,4 +1,5 @@
 import { getDvaApp } from 'umi';
+import { vConsole } from './utils/vconsole';
 export const dva = {
   config: {
     onError(err: any) {
@@ -11,7 +12,7 @@ export function onRouteChange({ location, routes, action }) {
   const dvaApp = getDvaApp();
   const { _store } = dvaApp;
   const state = _store.getState();
-
+  vConsole();
   if (state.index.prevPath !== location.pathname) {
     console.log('onRouteChange', 'path', location.pathname, state.index);
     _store.dispatch({
