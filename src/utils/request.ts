@@ -37,8 +37,22 @@ const request = extend({
   // },
 });
 
+const CancelToken = request.CancelToken;
+let cancel: any;
 request.use(progressMiddleware, { core: true });
 request.interceptors.request.use((url, options) => {
+  options.cancelToken = new CancelToken((c) => {
+    cancel = c;
+  });
+  console.log('interceptors request===>url', url, 'options', options);
+  if (sessionStorage.token) {
+    console.log('正常请求');
+  } else {
+    console.log('取消请求');
+    window.location.href = window.location.href;
+
+    cancel && cancel();
+  }
   // 自定义携带用户信息
   // if (userInfo && userInfo.token) {
   // options.headers['token'] = userInfo.token;
@@ -46,7 +60,6 @@ request.interceptors.request.use((url, options) => {
   // if(url.indexOf(''))
   // options.headers['authorization'] = token;
 
-  console.log('interceptors request===>url', url, 'options', options);
   return { url, options };
 });
 
