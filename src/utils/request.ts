@@ -40,26 +40,33 @@ const request = extend({
 const CancelToken = request.CancelToken;
 let cancel: any;
 request.use(progressMiddleware, { core: true });
+const checkStatus = async () => {
+  return Math.random() > 0.5;
+};
 request.interceptors.request.use((url, options) => {
-  options.cancelToken = new CancelToken((c) => {
-    cancel = c;
-  });
-  console.log('interceptors request===>url', url, 'options', options);
-  if (sessionStorage.token) {
-    console.log('正常请求');
-  } else {
-    console.log('取消请求');
-    window.location.href = window.location.href;
+  checkStatus()
+    .then((res) => {
+      options.cancelToken = new CancelToken((c) => {
+        cancel = c;
+      });
+      console.log('interceptors request===>url', url, 'options', options);
 
-    cancel && cancel();
-  }
-  // 自定义携带用户信息
-  // if (userInfo && userInfo.token) {
-  // options.headers['token'] = userInfo.token;
-  // }
-  // if(url.indexOf(''))
-  // options.headers['authorization'] = token;
+      if (res) {
+        console.log('正常请求', res);
+      } else {
+        console.log('取消请求', res);
+        // window.location.href = window.location.href;
 
+        cancel && cancel();
+      }
+      // 自定义携带用户信息
+      // if (userInfo && userInfo.token) {
+      // options.headers['token'] = userInfo.token;
+      // }
+      // if(url.indexOf(''))
+      // options.headers['authorization'] = token;
+    })
+    .catch((err) => {});
   return { url, options };
 });
 
