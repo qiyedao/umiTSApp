@@ -39,9 +39,9 @@ const request = extend({
 
 const CancelToken = request.CancelToken;
 let cancel: any;
-request.use(progressMiddleware, { core: true });
+// request.use(progressMiddleware, { core: true });
 const checkStatus = async () => {
-  return Math.random() > 0.5;
+  return true;
 };
 request.interceptors.request.use((url, options) => {
   checkStatus()
@@ -73,7 +73,7 @@ request.interceptors.request.use((url, options) => {
 request.interceptors.response.use(async (response) => {
   const { url } = response;
   console.log('interceptors response===>', 'response', response);
-  const IgnoreJSON: string[] = [];
+  const IgnoreJSON: string[] = ['pdf'];
   let data: any = '';
   if (IsNoExist(response.url, IgnoreJSON)) {
     data = await response.clone().json();
