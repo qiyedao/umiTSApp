@@ -1,9 +1,9 @@
 import React from 'react';
 import { LogType } from './LogCallback';
 const Log = (type: string) => {
-  return (WrappedComponent: any) => {
+  return (WrappedComponent: React.FC) => {
     return class NewComponent extends React.Component {
-      // @LogType(type)
+      @LogType(type)
       componentDidMount() {
         console.log('HOC Log type', type);
         LogType(type);

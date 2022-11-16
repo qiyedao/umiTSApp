@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { useRequest } from 'ahooks';
 import CustomSkeleton from '@/components/CustomSkeleton';
 import { exportFile } from '@/utils/upload';
+import Log from '@/utils/Log';
 const Home: FC = (props) => {
   const history = useHistory();
   useEffect(() => {
@@ -72,4 +73,4 @@ const Home: FC = (props) => {
   };
   return <div>{renderMenu([{ title: '123' }])}</div>;
 };
-export default connect(({ index }) => index)(Home);
+export default connect(({ index }) => index)(Log('home')(Home));
