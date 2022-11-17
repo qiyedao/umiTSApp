@@ -31,6 +31,7 @@
     "test/**/*",
     "__test__/**/*",
     "typings/**/*",
+    "typings.d.ts",
     "config/**/*",
     ".eslintrc.js",
     ".stylelintrc.js",
