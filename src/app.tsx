@@ -8,15 +8,15 @@ export const dva = {
     },
   },
 };
-export function onRouteChange({ location, routes, action }) {
+export function onRouteChange({ location }) {
   const dvaApp = getDvaApp();
   const { _store } = dvaApp;
   const state = _store.getState();
   vConsole();
-  if (state.index.prevPath !== location.pathname) {
-    console.log('onRouteChange', 'path', location.pathname, state.index);
+  if (state.global.prevPath !== location.pathname) {
+    console.log('onRouteChange', 'path', location.pathname, state.global);
     _store.dispatch({
-      type: 'index/save',
+      type: 'global/save',
       payload: {
         name: 'init',
         prevPath: location.pathname,

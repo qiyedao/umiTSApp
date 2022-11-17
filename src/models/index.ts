@@ -1,41 +1,37 @@
-import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
+import { commonFormUpload } from '@/utils/upload';
+import { Effect, Reducer } from 'umi';
 
-export interface IndexModelState {
+export interface GlobalModelState {
   name: string;
   prevPath: string;
 }
 
-export interface IndexModelType {
-  namespace: 'index';
-  state: IndexModelState;
+export interface GlobalModelType {
+  namespace: 'global';
+  state: GlobalModelState;
   effects: {
     query: Effect;
-    modify: Effect;
-    delete: Effect;
   };
   reducers: {
-    save: Reducer<IndexModelState>;
-    // 启用 immer 之后
-    // save: ImmerReducer<IndexModelState>;
+    save: Reducer<GlobalModelState>;
   };
-  subscriptions: { setup: Subscription };
 }
 
-const IndexModel: IndexModelType = {
-  namespace: 'index',
+const GlobalModel: GlobalModelType = {
+  namespace: 'global',
 
   state: {
-    name: 'hello',
+    name: '',
     prevPath: '',
   },
 
   effects: {
-    *query({ payload }, { call, put }) {},
-    *modify({ payload }, { call, put }) {
-      return true;
-    },
-    *delete({ payload }, { call, put }) {
-      return { status: true };
+    *query({ payload }, { call, put }) {
+      call(commonFormUpload, payload);
+      put({
+        type: 'save',
+        payload: {},
+      });
     },
   },
   reducers: {
@@ -45,22 +41,7 @@ const IndexModel: IndexModelType = {
         ...action.payload,
       };
     },
-    // 启用 immer 之后
-    // save(state, action) {
-    //   state.name = action.payload;
-    // },
-  },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname }) => {
-        if (pathname === '/') {
-          dispatch({
-            type: 'query',
-          });
-        }
-      });
-    },
   },
 };
 
-export default IndexModel;
+export default GlobalModel;

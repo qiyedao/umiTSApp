@@ -1,13 +1,7 @@
 import { defineConfig } from 'umi';
-import { setFontSize } from './headScripts';
 import routes from './routes';
 
 export default defineConfig({
-  // favicon: '/assets/favicon.svg',
-  plugins: [
-    './plugins/favicon/customFavicon.ts',
-    './plugins/tailwind/index.ts',
-  ],
   tailwindcss: {
     // tailwindCssFilePath: '@/tailwind.css',//指定后需手动创建文件
     tailwindConfigFilePath: 'tailwind.config.js', // 默认取值 tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),,
@@ -70,26 +64,14 @@ export default defineConfig({
   history: { type: 'browser' },
   routes,
   fastRefresh: {},
-  headScripts: [
-    { src: '/jweixin-1.6.0.js' },
-    setFontSize,
-    { src: '/vconsole.min.js' },
-  ],
+  headScripts: [{ src: '/jweixin-1.6.0.js' }, { src: '/vconsole.min.js' }],
   terserOptions: {
     compress: {
       drop_console: true,
     },
   },
   // webpack5: {},
-  chunks: [
-    'vendors',
-    'umi',
-    'reactdom',
-    'antdm',
-    'corejs',
-    'reactspring',
-    'antd',
-  ],
+  chunks: ['vendors', 'umi', 'reactdom', 'antdm', 'corejs', 'reactspring', 'antd'],
   chainWebpack: (config) => {
     config.merge({
       optimization: {

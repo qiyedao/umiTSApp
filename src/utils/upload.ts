@@ -1,14 +1,11 @@
 import request from '@/utils/request';
 import Apis from '../services/Apis';
-import { ProgressHandler } from './middleWare';
 
 const path = Apis.CommonUpload;
-const delPath = Apis.DeleteFile;
 
 export async function commonFormUpload(
   data: any,
-  onUploadProgress?: ProgressHandler,
-  onDownloadProgress?: ProgressHandler,
+
   uploadUrl?: string,
 ) {
   let url = uploadUrl;
@@ -19,25 +16,9 @@ export async function commonFormUpload(
     method: 'post',
     data,
     requestType: 'form',
-    onUploadProgress,
-    onDownloadProgress,
-  });
-}
-export async function commonDelUpload(data: any) {
-  return request(delPath, {
-    method: 'delete',
-    data,
-    requestType: 'form',
   });
 }
 
-export async function commonDelListUpload(data: any) {
-  return request(`${delPath}/list`, {
-    method: 'delete',
-    data,
-    requestType: 'form',
-  });
-}
 /**
  *
  * @param {*} params
@@ -54,7 +35,7 @@ export async function exportFile(params: any, url: any) {
 }
 
 //导入
-export async function importFile(params, url) {
+export async function importFile(params: any, url: string) {
   return request(url, {
     method: 'put',
     data: params,
@@ -67,7 +48,7 @@ export async function importFile(params, url) {
  * @param {*} type
  */
 //下载
-export const handleDownloadFile = async (data, type = 'blob') => {
+export const handleDownloadFile = async (data: any, type = 'blob') => {
   if (type == 'blob' || type == 'link') {
     try {
       let href = '';
@@ -77,9 +58,9 @@ export const handleDownloadFile = async (data, type = 'blob') => {
       } else {
         href = data.url;
       }
-      let downloadElement = document.createElement('a');
+      const downloadElement = document.createElement('a');
       downloadElement.href = href;
-      let filename = data.filename;
+      const filename = data.filename;
       console.log(filename, 'filename');
       downloadElement.download = filename.split('filename=')[1];
       document.body.appendChild(downloadElement);
@@ -102,7 +83,7 @@ export const handleDownloadFile = async (data, type = 'blob') => {
  * @returns
  */
 //导出文件
-export const handleExportFile = (params, url, name) => {
+export const handleExportFile = (params: any, url: string, name: string) => {
   //开始导出
   return new Promise((resolve, reject) => {
     exportFile(params, url)
