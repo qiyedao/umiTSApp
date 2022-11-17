@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><title data-react-helmet="true"></title>
+    <meta charset="utf-8">
+    <title>list</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.jpeg">
+    <script>
+      let context = "/";
+      console.log("context", context);
+    </script>
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <meta name="yes" content="apple-mobile-web-app-capable">
+    <meta name="yes" content="apple-touch-fullscreen">
+    <meta name="aplus-waiting" content="MAN">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <link rel="stylesheet" href="/umi.95a7d144.css">
+    <script>
+      window.routerBase = "/";
+    </script>
+    <script>
+      //! umi version: 3.5.34
+    </script>
+    <script src="/jweixin-1.6.0.js"></script>
+    <script src="/vconsole.min.js"></script>
+  
+</head>
+
+  <body>
+    <div id="root"><div><style data-emotion="css 4ama0k">.css-4ama0k .adm-tabs-header{position:-webkit-sticky;position:sticky;background:#fff;top:0;}</style><div class="adm-tabs css-4ama0k"><div class="adm-tabs-header"><div class="adm-tabs-header-mask adm-tabs-header-mask-left" style="opacity:0"></div><div class="adm-tabs-header-mask adm-tabs-header-mask-right" style="opacity:0"></div><div class="adm-tabs-tab-list"><div class="adm-tabs-tab-line" style="width:0;transform:none"></div><div class="adm-tabs-tab-wrapper adm-tabs-tab-wrapper-stretch"><div class="adm-tabs-tab">A</div></div><div class="adm-tabs-tab-wrapper adm-tabs-tab-wrapper-stretch"><div class="adm-tabs-tab adm-tabs-tab-active">A1</div></div><div class="adm-tabs-tab-wrapper adm-tabs-tab-wrapper-stretch"><div class="adm-tabs-tab">A2</div></div></div></div><div class="adm-tabs-content" style="display:block"><div><div class="adm-infinite-scroll"><span>加载中</span><div style="color:var(--adm-color-weak)" class="adm-loading adm-dot-loading"><svg height="1em" viewBox="0 0 100 40" style="vertical-align:-0.125em"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-100.000000, -71.000000)"><g transform="translate(95.000000, 71.000000)"><g transform="translate(5.000000, 0.000000)"><rect fill="currentColor" x="20" y="16" width="8" height="8" rx="2"><animate attributeName="y" from="16" to="16" dur="2s" begin="0s" repeatCount="indefinite" values="16; 6; 26; 16; 16" keyTimes="0; 0.1; 0.3; 0.4; 1"></animate></rect><rect fill="currentColor" x="46" y="16" width="8" height="8" rx="2"><animate attributeName="y" from="16" to="16" dur="2s" begin="0.2s" repeatCount="indefinite" values="16; 6; 26; 16; 16" keyTimes="0; 0.1; 0.3; 0.4; 1"></animate></rect><rect fill="currentColor" x="72" y="16" width="8" height="8" rx="2"><animate attributeName="y" from="16" to="16" dur="2s" begin="0.4s" repeatCount="indefinite" values="16; 6; 26; 16; 16" keyTimes="0; 0.1; 0.3; 0.4; 1"></animate></rect></g></g></g></g></svg></div></div></div></div></div></div></div>
+	<script>
+  window.g_useSSR = true;
+  window.g_initialProps = {};
+	</script>
+    <script>
+      const WIDTH = 375; //设计稿尺寸
+      //  由于安卓取的宽高有时未必是有效值，所以此处取最大的(用于遮罩层)
+      function getMaxValue(num1, num2, num3) {
+        var value = 0;
+        if (num1 >= num2) {
+          value = num1;
+        } else {
+          value = num2;
+        }
+        // if (value < num3) {
+        //   value = num3;
+        // }
+        return value;
+      }
+      const setView = () => {
+        setTimeout(function () {
+          // var scrollHeight = getMaxValue(
+          //   document.documentElement.clientHeight,
+          //   document.body.clientHeight,
+          //   window.screen.height,
+          // );
+          var scrollwidth = getMaxValue(
+            document.documentElement.clientWidth,
+            window.screen.width
+          );
+          console.log(scrollwidth, "scrollwidth");
+
+          document.documentElement.style.fontSize =
+            (100 * scrollwidth) / WIDTH + "px";
+        }, 300);
+      };
+      setView();
+      window.addEventListener(
+        "onorientationchange" in window ? "orientationchange" : "resize",
+        setView,
+        false
+      );
+    </script>
+
+    <script src="/umi.c9d791d0.js"></script>
+    <script src="/p__list.15fbfcd0.async.js"></script>
+  
+
+</body></html>

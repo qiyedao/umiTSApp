@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><title data-react-helmet="true"></title>
+    <meta charset="utf-8">
+    <title>emotion</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.jpeg">
+    <script>
+      let context = "/";
+      console.log("context", context);
+    </script>
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <meta name="yes" content="apple-mobile-web-app-capable">
+    <meta name="yes" content="apple-touch-fullscreen">
+    <meta name="aplus-waiting" content="MAN">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <link rel="stylesheet" href="/umi.95a7d144.css">
+    <link rel="stylesheet" href="/p__emotion.7595c262.chunk.css">
+    <script>
+      window.routerBase = "/";
+    </script>
+    <script>
+      //! umi version: 3.5.34
+    </script>
+    <script src="/jweixin-1.6.0.js"></script>
+    <script src="/vconsole.min.js"></script>
+  
+</head>
+
+  <body>
+    <div id="root"><style data-emotion="css 4mrk2h">.css-4mrk2h{font-size:30px;}.css-4mrk2h .btnclick{font-size:50px;}</style><div class="css-4mrk2h"><style data-emotion="css b2q5ru">.css-b2q5ru{width:100px;height:30px;background-color:#1890ff;color:#fff;cursor:pointer;text-align:center;}</style><div class="css-b2q5ru e1t1ubme2"><div class="btnclick"> click</div></div><style data-emotion="css 18aald">.css-18aald{color:red;}.css-18aald:hover{color:orange;}</style><div class="icon-red css-18aald e1t1ubme1" color="orange">icon</div><style data-emotion="css 1g5xiio">.css-1g5xiio{background-color:rgba(0, 0, 0, 0.1);}.css-1g5xiio .adm-mask{background-color:rgba(0, 0, 0, 0.1);}</style><style data-emotion="css gn5l8h">.css-gn5l8h{background-color:rgba(0, 0, 0, 0.1);}.css-gn5l8h .adm-mask{background-color:rgba(0, 0, 0, 0.1)!important;}.css-gn5l8h .adm-mask{background-color:rgba(0, 0, 0, 0.1);}</style><form class="adm-form"><div class="adm-list adm-list-default"><div class="adm-list-body"><div class="adm-list-body-inner"><div><div class="adm-list-item adm-form-item adm-form-item-horizontal"><div class="adm-list-item-content"><div class="adm-list-item-content-prefix"><label class="adm-form-item-label" for="name"><span class="custom-label-container"><span class="">姓名：</span></span></label></div><div class="adm-list-item-content-main"><div class="adm-form-item-child adm-form-item-child-position-normal"><div class="adm-form-item-child-inner"><div class="adm-input" style="width:100%"><input class="adm-input-element" value="" id="name"/></div></div></div></div></div></div></div><div><div class="adm-list-item adm-form-item adm-form-item-horizontal"><div class="adm-list-item-content"><div class="adm-list-item-content-prefix"><label class="adm-form-item-label" for="remark"><span class="custom-label-container"><span class="">remark：</span></span></label></div><div class="adm-list-item-content-main"><div class="adm-form-item-child adm-form-item-child-position-normal"><div class="adm-form-item-child-inner"><div class="adm-text-area" style="width:100%"><textarea class="adm-text-area-element" rows="2" id="remark"></textarea></div></div></div></div></div></div></div><div><div class="adm-list-item adm-form-item adm-form-item-horizontal"><div class="adm-list-item-content"><div class="adm-list-item-content-prefix"><label class="adm-form-item-label" for="file"><span class="custom-label-container"><span class="">file：</span></span></label></div><div class="adm-list-item-content-main"><div class="adm-form-item-child adm-form-item-child-position-normal"><div class="adm-form-item-child-inner"><span><div type="flex" class="ant-row ant-row-start"><div class="ant-col"><span class="uploadInrow"><div class="ant-upload ant-upload-select ant-upload-select-picture"><span tabindex="0" class="ant-upload" role="button"><input type="file" style="display:none" accept=".png,.jpg,.jpeg,.bmp"/><div><div style="width:100%" class="ant-btn custom-upload-btn"><span>选择<!-- -->图片</span></div></div></span></div></span></div></div><div class="custom-upload-list"></div></span></div></div></div></div></div></div></div></div></div></form><button type="button" class="adm-button adm-button-primary adm-button-block adm-button-shape-default"><span>formRef</span></button></div></div>
+	<script>
+  window.g_useSSR = true;
+  window.g_initialProps = {};
+	</script>
+    <script>
+      const WIDTH = 375; //设计稿尺寸
+      //  由于安卓取的宽高有时未必是有效值，所以此处取最大的(用于遮罩层)
+      function getMaxValue(num1, num2, num3) {
+        var value = 0;
+        if (num1 >= num2) {
+          value = num1;
+        } else {
+          value = num2;
+        }
+        // if (value < num3) {
+        //   value = num3;
+        // }
+        return value;
+      }
+      const setView = () => {
+        setTimeout(function () {
+          // var scrollHeight = getMaxValue(
+          //   document.documentElement.clientHeight,
+          //   document.body.clientHeight,
+          //   window.screen.height,
+          // );
+          var scrollwidth = getMaxValue(
+            document.documentElement.clientWidth,
+            window.screen.width
+          );
+          console.log(scrollwidth, "scrollwidth");
+
+          document.documentElement.style.fontSize =
+            (100 * scrollwidth) / WIDTH + "px";
+        }, 300);
+      };
+      setView();
+      window.addEventListener(
+        "onorientationchange" in window ? "orientationchange" : "resize",
+        setView,
+        false
+      );
+    </script>
+
+    <script src="/umi.c9d791d0.js"></script>
+    <script src="/p__emotion.a3c7f45c.async.js"></script>
+  
+
+</body></html>
