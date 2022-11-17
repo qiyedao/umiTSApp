@@ -6,7 +6,7 @@ const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
   hash: true,
-  ssr: { mode: 'stream' },
+  ssr: { mode: 'string' },
   exportStatic: {},
   antdMobile: {},
   dva: {
@@ -61,5 +61,5 @@ export default defineConfig({
     },
   ],
   nodeModulesTransform: { type: 'none' },
-  webpack5: {},
+  // webpack5: {},
 });
