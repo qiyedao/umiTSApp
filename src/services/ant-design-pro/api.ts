@@ -21,10 +21,7 @@ export async function outLogin(options?: { [key: string]: any }) {
 }
 
 /** 登录接口 POST /api/login/account */
-export async function login(
-  body: API.LoginParams,
-  options?: { [key: string]: any },
-) {
+export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
   return request<API.LoginResult>('/api/login/account', {
     method: 'POST',
     headers: {
@@ -44,7 +41,7 @@ export async function getNotices(options?: { [key: string]: any }) {
 }
 
 /** 获取规则列表 GET /api/rule */
-export async function list(
+export async function rule(
   params: {
     // query
     /** 当前的页码 */
@@ -54,8 +51,6 @@ export async function list(
   },
   options?: { [key: string]: any },
 ) {
-  console.log('ts params', params);
-
   return request<API.RuleList>('/api/rule', {
     method: 'GET',
     params: {
@@ -66,7 +61,7 @@ export async function list(
 }
 
 /** 新建规则 PUT /api/rule */
-export async function update(options?: { [key: string]: any }) {
+export async function updateRule(options?: { [key: string]: any }) {
   return request<API.RuleListItem>('/api/rule', {
     method: 'PUT',
     ...(options || {}),
@@ -74,7 +69,7 @@ export async function update(options?: { [key: string]: any }) {
 }
 
 /** 新建规则 POST /api/rule */
-export async function add(options?: { [key: string]: any }) {
+export async function addRule(options?: { [key: string]: any }) {
   return request<API.RuleListItem>('/api/rule', {
     method: 'POST',
     ...(options || {}),
@@ -82,7 +77,7 @@ export async function add(options?: { [key: string]: any }) {
 }
 
 /** 删除规则 DELETE /api/rule */
-export async function remove(options?: { [key: string]: any }) {
+export async function removeRule(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/rule', {
     method: 'DELETE',
     ...(options || {}),

@@ -1,11 +1,5 @@
 {
-  "files.associations": {
-    "*.html": "html",
-    "*.cjson": "jsonc",
-    "*.wxss": "css",
-    "*.wxs": "javascript",
-    "*.tsx": "typescriptreact",
-    "*.ttml": "xml",
-    "*.ttss": "css"
-  }
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

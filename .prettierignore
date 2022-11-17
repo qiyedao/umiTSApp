@@ -1,8 +1,4 @@
-**/*.md
 **/*.svg
-**/*.ejs
-**/*.html
-.umi-test
 package.json
 .umi
 .umi-production

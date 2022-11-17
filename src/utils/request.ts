@@ -3,7 +3,6 @@ import { notification } from 'antd';
 import { extend } from 'umi-request';
 import { IsNoExist } from './utils';
 const isDev = process.env.NODE_ENV === 'development';
-import progressMiddleware from './middleWare/index';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新增或修改数据成功。',
@@ -39,7 +38,6 @@ const request = extend({
 
 const CancelToken = request.CancelToken;
 let cancel: any;
-// request.use(progressMiddleware, { core: true });
 const checkStatus = async () => {
   return true;
 };
@@ -57,7 +55,10 @@ request.interceptors.request.use((url, options) => {
         console.log('取消请求', res);
         // window.location.href = window.location.href;
 
-        cancel && cancel();
+        // cancel && cancel();
+        if (cancel) {
+          cancel();
+        }
       }
       // 自定义携带用户信息
       // if (userInfo && userInfo.token) {
@@ -66,7 +67,9 @@ request.interceptors.request.use((url, options) => {
       // if(url.indexOf(''))
       // options.headers['authorization'] = token;
     })
-    .catch((err) => {});
+    .catch((err) => {
+      console.log(err);
+    });
   return { url, options };
 });
 
@@ -75,12 +78,11 @@ request.interceptors.response.use(async (response) => {
   console.log('interceptors response===>', 'response', response);
   const IgnoreJSON: string[] = ['pdf'];
   let data: any = '';
-  if (IsNoExist(response.url, IgnoreJSON)) {
+  if (IsNoExist(url, IgnoreJSON)) {
     data = await response.clone().json();
     console.log('response', data);
   }
-  const token = window.sessionStorage.getItem('token');
-
+  // const token = window.sessionStorage.getItem('token');
   // if (data.status.code !== -1 && !token) {
   //   //拦截未登录
   //   window.location.href = Apis.Auth;
@@ -109,7 +111,7 @@ request.interceptors.response.use(async (response) => {
   if (data && data.error) {
     //return system status;
     console.log('systemresponse,', data);
-    const { url } = response;
+
     const errorText = codeMessage[data.status] || '';
 
     const errorCode = data.status;

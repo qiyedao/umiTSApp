@@ -12,12 +12,5 @@ export default defineConfig({
     babelPlugins: [],
     babelOptions: {},
   },
-  devtool: 'false',
   ssr: undefined,
-  targets: {
-    ie: 11,
-  },
-  webpack5: undefined,
-  chunks: undefined,
-  chainWebpack: undefined,
 });

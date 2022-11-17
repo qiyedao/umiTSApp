@@ -1,21 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-html {
-  -webkit-text-size-adjust: none;
-  -webkit-font-smoothing: antialiased;
-}
+@import '~antd/es/style/variable.less';
+
 html,
 body,
 #root {
   height: 100%;
-}
-body {
-  font-size: 16px;
 }
 
 .colorWeak {
@@ -35,19 +23,4 @@ body {
 ul,
 ol {
   list-style: none;
-}
-
-@media (max-width: 500px) {
-  ul,
-  ol {
-    list-style: none;
-  }
-}
-.adm-form {
-  .adm-list-default .adm-list-body {
-    border: none !important;
-  }
-  .adm-list-item-content {
-    border: none !important;
-  }
 }
