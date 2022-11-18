@@ -1,5 +1,6 @@
 import { InfiniteScroll } from 'antd-mobile';
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 
 interface CustomListProps {
   renderItem: (item: any, index: number) => React.ReactNode;

@@ -1,9 +1,9 @@
-@import url(../../global.less);
+@import url('../../global.less');
 .app {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }
 
 .top {
@@ -12,10 +12,10 @@
 }
 
 .body {
-  flex: 1;
   display: flex;
-  justify-content: center;
+  flex: 1;
   align-items: center;
+  justify-content: center;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   .main {
@@ -25,10 +25,10 @@
 }
 
 .bottom {
-  flex: 0;
-  border-top: solid 1px var(--adm-color-border);
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  flex: 0;
   width: 100%;
   background-color: #fff;
+  border-top: solid 1px var(--adm-color-border);
 }

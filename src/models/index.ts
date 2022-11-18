@@ -1,5 +1,5 @@
 import { commonFormUpload } from '@/utils/upload';
-import { Effect, Reducer } from 'umi';
+import type { Effect, Reducer } from 'umi';
 
 export interface GlobalModelState {
   name: string;

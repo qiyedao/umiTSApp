@@ -63,10 +63,7 @@ export async function updatePetWithForm(params, body, options) {
     const item = body[ele];
 
     if (item !== undefined && item !== null) {
-      formData.append(
-        ele,
-        typeof item === 'object' ? JSON.stringify(item) : item,
-      );
+      formData.append(ele, typeof item === 'object' ? JSON.stringify(item) : item);
     }
   });
   return request(`/pet/${param0}`, {
@@ -98,10 +95,7 @@ export async function uploadFile(params, body, options) {
     const item = body[ele];
 
     if (item !== undefined && item !== null) {
-      formData.append(
-        ele,
-        typeof item === 'object' ? JSON.stringify(item) : item,
-      );
+      formData.append(ele, typeof item === 'object' ? JSON.stringify(item) : item);
     }
   });
   return request(`/pet/${param0}/uploadImage`, {

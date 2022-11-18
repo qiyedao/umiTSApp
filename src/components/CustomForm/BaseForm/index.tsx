@@ -1,10 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { Modal, Form, Button, Toast } from 'antd-mobile';
+import type { FC } from 'react';
+import { useEffect } from 'react';
+import { Form, Button, Toast } from 'antd-mobile';
 import { renderFormComponent } from '../common/index';
-import { FormColumnsType, ObjectType } from '@/typings';
-import { FormInstance } from 'antd-mobile/es/components/form';
+import type { FormColumnsType, ObjectType } from '@/typings';
+import type { FormInstance } from 'antd-mobile/es/components/form';
 
 export interface BaseFormProps {
   columns: FormColumnsType[];

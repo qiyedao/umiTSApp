@@ -1,20 +1,9 @@
-import React, { FC } from 'react';
-import { NavBar, TabBar } from 'antd-mobile';
-import {
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-  BrowserRouter as Router,
-} from 'react-router-dom';
-import {
-  AppOutline,
-  MessageOutline,
-  UnorderedListOutline,
-  UserOutline,
-} from 'antd-mobile-icons';
+import type { FC } from 'react';
+import React from 'react';
+import { TabBar } from 'antd-mobile';
+import { useHistory, useLocation } from 'umi';
+import { AppOutline, UserOutline } from 'antd-mobile-icons';
 import styles from './index.less';
-import CustomNavBar from '@/components/CustomNavBar';
 
 const Bottom: FC = () => {
   const history = useHistory();
@@ -57,18 +46,10 @@ export default (props: { children: React.ReactNode }) => {
       <div className={styles.body}>
         <div className={styles.main}>{props.children}</div>
       </div>
-      <div className="adm-tab-bar-wrap"></div>
+      <div className="adm-tab-bar-wrap" />
       <div className={styles.bottom}>
         <Bottom />
       </div>
     </div>
   );
 };
-
-function Home() {
-  return <div>首页</div>;
-}
-
-function PersonalCenter() {
-  return <div>个人中心</div>;
-}

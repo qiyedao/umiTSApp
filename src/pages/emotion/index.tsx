@@ -1,15 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Modal, Form, Button, Toast } from 'antd-mobile';
-import {
-  renderFormComponent,
-  formArr,
-} from '@/components/CustomForm/common/index';
+import { Modal, Form, Button } from 'antd-mobile';
 import BaseForm from '@/components/CustomForm/BaseForm';
-import { FormInstance } from 'antd-mobile/es/components/form';
-import { ObjectType } from '@/typings';
-import { currentUser } from '@/services/user/api';
+import type { ObjectType } from '@/typings';
 const Button2 = styled.div`
   width: 100px;
   height: 30px;
@@ -19,9 +13,9 @@ const Button2 = styled.div`
   text-align: center;
 `;
 const buttonCss = css`
-  font-size: 30px;
+  font-size: 50px;
   .btnclick {
-    font-size: 50px;
+    font-size: 150px;
   }
 `;
 const Icon = styled.div((props) => ({
@@ -93,11 +87,6 @@ export default () => {
     });
   }, []);
 
-  const handleCurrent = async () => {
-    try {
-      const res = currentUser();
-    } catch (error) {}
-  };
   return (
     <div css={buttonCss}>
       <Button2
@@ -119,7 +108,7 @@ export default () => {
         title="custom"
         content="hello"
         visible={visible}
-      ></CustomModal>
+      />
       <BaseForm
         columns={columns}
         initialValues={initialValues}

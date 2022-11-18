@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, connect, Helmet } from 'umi';
 import { Image } from 'antd-mobile';
 import styles from './index.less';
-import { ObjectType } from '@/typings';
+import type { ObjectType } from '@/typings';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { exportFile } from '@/utils/upload';
@@ -30,7 +31,6 @@ const Home: FC = (props) => {
   // const { data, run, cancel } = useRequest(queryStatus, {
   //   pollingInterval: 3000,
   // });
-  console.log('data');
 
   const renderMenu = (list: ObjectType[]) => {
     const divList: React.ReactNode[] = [];

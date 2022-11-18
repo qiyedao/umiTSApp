@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
 import { useHistory, useLocation, useRouteMatch } from 'umi';
 import { getCurrentRoute } from '@/utils/util';
 import routes from '../../../config/routes';
-import { ObjectType } from '@/typings';
+import type { ObjectType } from '@/typings';
 interface NavBarProps {
   backArrow?: boolean;
   showTitle?: boolean;

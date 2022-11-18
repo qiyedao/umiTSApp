@@ -177,13 +177,7 @@ export default (props) => {
           name="file"
           className={'uploadInrow'}
           customRequest={customRequest}
-          listType={
-            props.listType
-              ? props.listType
-              : props.isButton
-              ? 'picture'
-              : 'picture-card'
-          }
+          listType={props.listType ? props.listType : props.isButton ? 'picture' : 'picture-card'}
           beforeUpload={beforeUpload}
           accept={accept}
           showUploadList={props.showUploadList || false}

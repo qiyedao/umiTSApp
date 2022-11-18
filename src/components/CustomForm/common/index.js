@@ -7,6 +7,7 @@ import {
   Slider,
   Switch,
   TextArea,
+  Selector,
 } from 'antd-mobile';
 import classNames from 'classnames';
 import WrappedFormItem from '../components/CustomWrappedFormItem';
@@ -84,11 +85,7 @@ export const renderFormComponent = (item) => {
           rules={fieldProps?.rules || []}
           label={renderLabel(fieldProps, labelStyle, labelName)}
         >
-          <CustomInput
-            style={{ ...styles }}
-            disabled={!!disabled}
-            {...fieldProps}
-          />
+          <CustomInput style={{ ...styles }} disabled={!!disabled} {...fieldProps} />
         </WrappedFormItem>
       );
     case 'Cascader':
@@ -98,11 +95,7 @@ export const renderFormComponent = (item) => {
           rules={fieldProps?.rules || []}
           label={renderLabel(fieldProps, labelStyle, labelName)}
         >
-          <Cascader
-            style={{ ...styles }}
-            disabled={!!disabled}
-            {...fieldProps}
-          />
+          <Cascader style={{ ...styles }} disabled={!!disabled} {...fieldProps} />
         </WrappedFormItem>
       );
     case 'Upload':
@@ -145,11 +138,7 @@ export const renderFormComponent = (item) => {
           rules={fieldProps?.rules || []}
           label={renderLabel(fieldProps, labelStyle, labelName)}
         >
-          <Checkbox.Group
-            disabled={!!disabled}
-            style={styles}
-            {...fieldProps}
-          />
+          <Checkbox.Group disabled={!!disabled} style={styles} {...fieldProps} />
         </WrappedFormItem>
       );
     case 'Radio':

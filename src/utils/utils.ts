@@ -1,4 +1,4 @@
-import { ObjectType } from '@/typings';
+import type { ObjectType } from '@/typings';
 const ChinaCity: ObjectType = [];
 import { parse } from 'querystring';
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);

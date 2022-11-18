@@ -1,5 +1,6 @@
 import { Avatar, List } from 'antd-mobile';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 const ME: FC = () => {
   return (
     <div>

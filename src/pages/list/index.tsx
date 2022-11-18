@@ -1,13 +1,12 @@
-import CustomList from '@/components/CustomList';
 import TabList from '@/components/CustomList/tabList';
-import React, { useState } from 'react';
+import { useState } from 'react';
 export default () => {
   const [activeKey, setActiveKey] = useState('A1');
   const [pageNum, setPageNum] = useState(1);
 
   const requst = () => {
     if (activeKey === 'A') {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve([
             '0A' + pageNum,
@@ -30,7 +29,7 @@ export default () => {
         }, 1000);
       });
     } else {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve([
             'A' + pageNum,
@@ -59,9 +58,7 @@ export default () => {
     { key: 'A1', title: 'A1' },
     { key: 'A2', title: 'A2' },
   ];
-  const renderItem = (item: any, index: number) => (
-    <div key={index}>{item}</div>
-  );
+  const renderItem = (item: any, index: number) => <div key={index}>{item}</div>;
   return (
     <TabList
       request={requst}

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { DotLoading, SpinLoading } from 'antd-mobile';
+import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 export default () => {
@@ -21,6 +20,6 @@ export default () => {
         height: '100%',
         width: '100%',
       }}
-    ></div>
+    />
   );
 };

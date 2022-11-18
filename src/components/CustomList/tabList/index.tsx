@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
-import { InfiniteScroll, Tabs } from 'antd-mobile';
-import React, { FC, useState } from 'react';
+import { Tabs } from 'antd-mobile';
+import type { FC } from 'react';
+import React from 'react';
 import CustomList from '..';
-import styles from './index.less';
 type TabType = {
   title: string;
   key: string;
@@ -11,8 +11,8 @@ type TabType = {
 const TabsCss = css`
   .adm-tabs-header {
     position: sticky;
-    background: #fff;
     top: 0;
+    background: #fff;
   }
 `;
 const tabHeight = 42;
@@ -32,13 +32,11 @@ const TabList: FC<CustomListProps> = ({
   activeKey,
 }) => {
   const handleRenderTabs = () => {
-    let eleList: React.ReactNode[] = [];
+    const eleList: React.ReactNode[] = [];
     tabs.map((item: TabType) => {
       eleList.push(
         <Tabs.Tab title={item.title} key={item.key}>
-          {activeKey === item.key && (
-            <CustomList request={request} renderItem={renderItem} />
-          )}
+          {activeKey === item.key && <CustomList request={request} renderItem={renderItem} />}
         </Tabs.Tab>,
       );
     });
@@ -47,7 +45,10 @@ const TabList: FC<CustomListProps> = ({
         css={TabsCss}
         activeKey={activeKey}
         onChange={(key) => {
-          onChangeTab && onChangeTab(key);
+          if (onChangeTab) {
+            onChangeTab(key);
+          }
+
           window.scrollTo({
             top: window.scrollY - tabHeight,
           });
@@ -58,7 +59,7 @@ const TabList: FC<CustomListProps> = ({
     );
   };
 
-  return <div>{tabs.length && handleRenderTabs()}</div>;
+  return <div>{tabs.length ? handleRenderTabs() : null}</div>;
 };
 
 export default TabList;

@@ -1,7 +1,6 @@
-import React, { CSSProperties } from 'react';
-export type ObjectType = {
-  [key: string | number]: any;
-};
+import type { CSSProperties } from 'react';
+import type React from 'react';
+export type ObjectType = Record<string | number, any>;
 export type FormColumnsType = {
   type: string;
   name: string;
