@@ -50,6 +50,7 @@
     "ahooks": "^3.7.0",
     "antd-mobile": "^5.25.0",
     "classnames": "^2.3.1",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.11.3",
     "lodash": "^4.17.0",
     "nprogress": "^0.2.0",
@@ -62,6 +63,7 @@
   "devDependencies": {
     "@emotion/babel-preset-css-prop": "^11.10.0",
     "@playwright/test": "^1.17.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/history": "^4.7.0",
     "@types/lodash": "^4.14.0",
     "@types/nprogress": "^0.2.0",

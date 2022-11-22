@@ -28,24 +28,27 @@
       // }
       return value;
     }
+    const setFontSize = () => {
+      // var scrollHeight = getMaxValue(
+      //   document.documentElement.clientHeight,
+      //   document.body.clientHeight,
+      //   window.screen.height,
+      // );
+      var scrollwidth = getMaxValue(
+        document.documentElement.clientWidth,
+        window.screen.width,
+      );
+      console.log(scrollwidth, 'scrollwidth');
+
+      document.documentElement.style.fontSize =
+        (100 * scrollwidth) / WIDTH + 'px';
+    }
     const setView = () => {
       setTimeout(function () {
-        // var scrollHeight = getMaxValue(
-        //   document.documentElement.clientHeight,
-        //   document.body.clientHeight,
-        //   window.screen.height,
-        // );
-        var scrollwidth = getMaxValue(
-          document.documentElement.clientWidth,
-          window.screen.width,
-        );
-        console.log(scrollwidth, 'scrollwidth');
-
-        document.documentElement.style.fontSize =
-          (100 * scrollwidth) / WIDTH + 'px';
-      }, 300);
+        setFontSize()
+      }, 1000 / 24);
     };
-    setView();
+    setFontSize();
     window.addEventListener(
       'onorientationchange' in window ? 'orientationchange' : 'resize',
       setView,
