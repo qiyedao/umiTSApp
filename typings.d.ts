@@ -12,4 +12,5 @@ declare module '*.svg' {
 }
 interface Window {
   wx: any;
+  PublicPath: string;
 }
