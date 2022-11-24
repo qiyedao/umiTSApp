@@ -14,3 +14,6 @@ export type FormColumnsType = {
   inlineStyle?: CSSProperties;
   Component?: React.ReactNode;
 };
+export interface ComponentChildrenProps {
+  children?: any;
+}

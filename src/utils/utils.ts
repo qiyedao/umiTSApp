@@ -1,7 +1,8 @@
 import type { ObjectType } from '@/typings';
 const ChinaCity: ObjectType = [];
 import { parse } from 'querystring';
-export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+export const getPageQuery = (url?: string) =>
+  url ? parse(url) : parse(window.location.href.split('?')[1]);
 export const getCityLabel = (area = []) => {
   let address = '';
   if (area.length > 0) {
@@ -35,6 +36,11 @@ export const IsNoExist = (url: string, arr: string[] = []) => {
   return index == -1;
 };
 
+export const IsExist = (url: string, arr: string[] = []) => {
+  const index = arr.findIndex((item) => url.indexOf(item) > -1);
+  console.log('IsExist url', url, index);
+  return index > -1;
+};
 /**
  *获取导航标题
  */

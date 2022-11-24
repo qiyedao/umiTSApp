@@ -1,29 +1,24 @@
 export default [
   {
-    title: 'emotion',
-    path: '/emotion',
-    component: '@/pages/emotion',
-  },
-  {
-    title: 'list',
-    path: '/list',
-    component: '@/pages/list',
-  },
-  {
     name: 'content',
     path: '/layout',
     component: '@/layout/ContentLayout',
     routes: [
       {
-        title: 'info',
-        path: '/layout/info',
-        component: '@/pages/info',
+        title: 'chat',
+        path: '/layout/chat',
+        component: '@/pages/chat',
       },
       {
         title: '404',
         component: '@/pages/404',
       },
     ],
+  },
+  {
+    title: '',
+    path: '/login',
+    component: '@/pages/login',
   },
   {
     path: '/',

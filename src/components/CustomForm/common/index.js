@@ -11,7 +11,6 @@ import {
 } from 'antd-mobile';
 import classNames from 'classnames';
 import WrappedFormItem from '../components/CustomWrappedFormItem';
-import CustomInput from '../CustomInputSelect';
 import CustomUpload from '../CustomUpload/CustomUpload';
 import './index.less';
 
@@ -78,16 +77,7 @@ export const renderFormComponent = (item) => {
           <Input style={{ ...styles }} disabled={!!disabled} {...fieldProps} />
         </WrappedFormItem>
       );
-    case 'InputSelect':
-      return (
-        <WrappedFormItem
-          name={name}
-          rules={fieldProps?.rules || []}
-          label={renderLabel(fieldProps, labelStyle, labelName)}
-        >
-          <CustomInput style={{ ...styles }} disabled={!!disabled} {...fieldProps} />
-        </WrappedFormItem>
-      );
+
     case 'Cascader':
       return (
         <WrappedFormItem

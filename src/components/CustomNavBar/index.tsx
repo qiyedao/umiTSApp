@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NavBar } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
 import { useHistory, useLocation, useRouteMatch } from 'umi';
-import { getCurrentRoute } from '@/utils/util';
+import { getCurrentRoute } from '@/utils/utils';
 import routes from '../../../config/routes';
 import type { ObjectType } from '@/typings';
 interface NavBarProps {

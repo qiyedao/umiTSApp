@@ -1,5 +1,7 @@
+import { getAPPId, getWechatJsAPi } from '@/services/user/api';
+import { Toast } from 'antd-mobile';
 import { isBrowser } from 'umi';
-
+import { getPageQuery } from './utils';
 /**
  * 检测是否在微信中打开网页
  * @returns boolean
@@ -11,55 +13,66 @@ export const isWeiXin = () => {
     if (isWeixin) {
       return true;
     } else {
-      return false;
+      return true;
     }
   } else {
-    return false;
+    return true;
   }
 };
 
-/**
- * 扫码
- * @param needResult
- * @param scanType
- * @returns Promise
- */
-export const wxScanQRCode = (
-  needResult: number = 1,
-  scanType: ['qrCode' | 'barCode'] = ['qrCode'],
+export const getWeixinCode = async (
+  scope: 'snsapi_userinfo' | 'snsapi_base',
+  redirect_uri?: string,
+  state?: string | number,
 ) => {
-  return new Promise((resolve) => {
-    wx.scanQRCode({
-      needResult, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-      scanType, // 可以指定扫二维码还是一维码，默认二者都有
-      success: function (res: any) {
-        const result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-        resolve(result);
-      },
-    });
-  });
+  try {
+    const { data } = await getAPPId();
+    const appid = data;
+    if (appid) {
+      const new_redirect_uri = encodeURIComponent(redirect_uri as string);
+      const url = `  https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${new_redirect_uri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect
+    `;
+      window.location.href = url;
+    } else {
+      Toast.show({
+        icon: 'fail',
+        content: '缺少参数公众号appid',
+      });
+    }
+  } catch (error) {}
 };
-/**
- * check auth
- * @param appId
- * @param timestamp
- * @param nonceStr
- * @param signature
- * @param jsApiList
- */
-export const wxConfig = (
-  appId: string,
-  timestamp: number,
-  nonceStr: string,
-  signature: string,
-  jsApiList: string[] = ['scanQRCode', 'chooseWXPay'],
-) => {
-  wx.config({
-    debug: true, // 开启调试模式,调用的所有 api 的返回值会在客户端 alert 出来，若要查看传入的参数，可以在 pc 端打开，参数信息会通过 log 打出，仅在 pc 端时才会打印。
-    appId, // 必填，公众号的唯一标识
-    timestamp, // 必填，生成签名的时间戳
-    nonceStr, // 必填，生成签名的随机串
-    signature, // 必填，签名
-    jsApiList, // 必填，需要使用的 JS 接口列表
-  });
+
+export const handleCheckUserCode = (redirect_uri: string) => {
+  const page = getPageQuery();
+  console.log('handleCheckUserCode', page);
+  if (!page.code && !sessionStorage.openid) {
+    getWeixinCode('snsapi_userinfo', redirect_uri, '');
+  }
+};
+
+export const handleCheckJsApi = async (url?: string) => {
+  try {
+    const configParams = {
+      url: url || window.location.href,
+    };
+    const u = navigator.userAgent;
+
+    const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    console.log('configParams', configParams, 'isiOS', isiOS);
+
+    if (isiOS) {
+      configParams.url = sessionStorage.url;
+    }
+
+    const { data } = await getWechatJsAPi(configParams);
+
+    window.wx.config({
+      appId: data.appId,
+      debug: false, //
+      timestamp: data.timestamp, // 必填，生成签名的时间戳
+      nonceStr: data.nonceStr, // 必填，生成签名的随机串
+      signature: data.signature, // 必填，签名
+      jsApiList: ['scanQRCode'], // 必填，需要使用的 JS 接口列表
+    });
+  } catch (error) {}
 };

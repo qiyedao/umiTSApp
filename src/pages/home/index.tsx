@@ -1,26 +1,20 @@
 import type { FC } from 'react';
 import React, { useEffect } from 'react';
-import { useHistory, connect, Helmet } from 'umi';
+import { connect } from 'umi';
 import { Image } from 'antd-mobile';
 import styles from './index.less';
 import type { ObjectType } from '@/typings';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { exportFile } from '@/utils/upload';
 import Log from '@/utils/Log';
+import { Decrypt, Encrypt } from '@/utils/crypto';
+import { handleNavigate } from '@/utils/navigate';
 const Home: FC = (props) => {
-  const history = useHistory();
   useEffect(() => {
     console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
 
     window.wx.config({});
     console.log('props', props);
-    exportFile(
-      {},
-      'http://192.168.3.204:9000/rocket.ts.ts.pdf/files/2022-09-01/7fcb97f0-b447-4904-b709-d054c9cc0650_做新时代的追梦人.pdfpdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=admin/20221020/us-east-1/s3/aws4_request&X-Amz-Date=20221020T022130Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f2d3379745ea1292768fdad19d69f193da96b98f6387deed9da3342011dec463',
-    ).then((res) => {
-      console.log(res);
-    });
   }, []);
   // const queryStatus = () => {
   //   return new Promise((resolve, reject) => {
@@ -38,7 +32,7 @@ const Home: FC = (props) => {
       divList.push(
         <div
           onClick={() => {
-            history.push('/layout/info');
+            handleNavigate('/layout/chat', { a: 1 });
           }}
           className={classNames(styles.menu, 'flex justify-content flex-col items-center')}
           key={index}
@@ -52,11 +46,10 @@ const Home: FC = (props) => {
   };
   return (
     <div>
-      {renderMenu([{ title: '123' }])}
-      <Helmet>
-        <title>123</title>
-      </Helmet>
+      {renderMenu([{ title: Encrypt('123456qwer1', 'qwertyasdfgh2022') }])}
+      <div>Encrypt: {Encrypt('123456qwer1', 'qwertyasdfgh2022')}</div>
+      <div>decrypt: {Decrypt(Encrypt('123456qwer1', 'qwertyasdfgh2022'), 'qwertyasdfgh2022')}</div>
     </div>
   );
 };
-export default connect(({ index }) => index)(Log('home')(Home));
+export default connect(({ global }) => global)(Log('home')(Home));
