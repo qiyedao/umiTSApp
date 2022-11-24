@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useEffect } from 'react';
-import { connect } from 'umi';
+import { connect, ConnectProps, GlobalModelState } from 'umi';
 import { Image } from 'antd-mobile';
 import styles from './index.less';
 import type { ObjectType } from '@/typings';
@@ -9,7 +9,10 @@ import dayjs from 'dayjs';
 import Log from '@/utils/Log';
 import { Decrypt, Encrypt } from '@/utils/crypto';
 import { handleNavigate } from '@/utils/navigate';
-const Home: FC = (props) => {
+interface HomeProps extends ConnectProps {
+  global: GlobalModelState;
+}
+const Home: FC<HomeProps> = (props) => {
   useEffect(() => {
     console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
 
@@ -52,4 +55,4 @@ const Home: FC = (props) => {
     </div>
   );
 };
-export default connect(({ global }) => global)(Log('home')(Home));
+export default connect(({ global }: { global: GlobalModelState }) => global)(Log('home')(Home));
