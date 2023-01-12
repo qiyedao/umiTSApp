@@ -1,17 +1,20 @@
 import type { FC } from 'react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect, ConnectProps, GlobalModelState } from 'umi';
-import { Image } from 'antd-mobile';
-import styles from './index.less';
-import type { ObjectType } from '@/typings';
-import classNames from 'classnames';
 import dayjs from 'dayjs';
 import Log from '@/utils/Log';
-import { Decrypt, Encrypt } from '@/utils/crypto';
-import { handleNavigate } from '@/utils/navigate';
 interface HomeProps extends ConnectProps {
   global: GlobalModelState;
 }
+import '../../../public/chat/index';
+import '../../../public/chat/index.css';
+const ChatApp = () => {
+  useEffect(() => {
+    const chat = new window.ChatSDK({ root: document.getElementById('chat') as HTMLElement });
+    chat.init();
+  }, []);
+  return <div style={{ height: 'calc(100vh - 0px)' }} id="chat"></div>;
+};
 const Home: FC<HomeProps> = (props) => {
   useEffect(() => {
     console.log(dayjs().format('YYYY-MM-DD hh:mm:ss'), 'dayjs');
@@ -29,29 +32,9 @@ const Home: FC<HomeProps> = (props) => {
   //   pollingInterval: 3000,
   // });
 
-  const renderMenu = (list: ObjectType[]) => {
-    const divList: React.ReactNode[] = [];
-    list.map((item, index) => {
-      divList.push(
-        <div
-          onClick={() => {
-            handleNavigate('/layout/chat', { a: 1 });
-          }}
-          className={classNames(styles.menu, 'flex justify-content flex-col items-center')}
-          key={index}
-        >
-          <Image className={styles.icon} src="" />
-          <div className={styles.title}>{item.title}</div>
-        </div>,
-      );
-    });
-    return divList;
-  };
   return (
     <div>
-      {renderMenu([{ title: Encrypt('123456qwer1', 'qwertyasdfgh2022') }])}
-      <div>Encrypt: {Encrypt('123456qwer1', 'qwertyasdfgh2022')}</div>
-      <div>decrypt: {Decrypt(Encrypt('123456qwer1', 'qwertyasdfgh2022'), 'qwertyasdfgh2022')}</div>
+      <ChatApp />
     </div>
   );
 };
