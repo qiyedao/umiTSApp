@@ -6,19 +6,13 @@ import Log from '@/utils/Log';
 interface HomeProps extends ConnectProps {
   global: GlobalModelState;
 }
-import {
-  ChatSDK,
-  ScrollView,
-  Card,
-  CardTitle,
-  CardText,
-  MessageProps,
-} from '../../../public/chat/index';
+import '../../../public/chat/index';
 import '../../../public/chat/index.css';
 import request from 'umi-request';
 import React from 'react';
+
 const ChatApp = () => {
-  const initialMessages: MessageProps[] = [
+  const initialMessages: any[] = [
     {
       type: 'system',
       content: { text: '8888VIP专属智能客服小蜜 为您服务' },
@@ -98,33 +92,9 @@ const ChatApp = () => {
       code: 'q6',
     },
   ];
-  const skillList = [
-    { title: '话费充值', desc: '智能充值智能充值' },
-    { title: '评价管理', desc: '我的评价' },
-    { title: '联系商家', desc: '急速联系' },
-    { title: '红包卡券', desc: '使用优惠' },
-    { title: '修改地址', desc: '修改地址' },
-  ];
 
-  class SkillCard extends React.Component {
-    render(): React.ReactNode {
-      return (
-        <ScrollView
-          className="skill-cards"
-          data={skillList}
-          fullWidth
-          renderItem={(item) => (
-            <Card>
-              <CardTitle>{item.title}</CardTitle>
-              <CardText>{item.desc}</CardText>
-            </Card>
-          )}
-        />
-      );
-    }
-  }
   useEffect(() => {
-    const chat = new ChatSDK({
+    const chat = new window.ChatSDK({
       root: document.getElementById('chat') as HTMLElement,
       config: {
         messages: initialMessages,
@@ -156,9 +126,6 @@ const ChatApp = () => {
             },
           };
         },
-      },
-      components: {
-        'skill-cards': SkillCard,
       },
     });
     chat.init();
