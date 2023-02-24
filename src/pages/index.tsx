@@ -1,36 +1,34 @@
-import mammoth from 'mammoth';
-import { useEffect, useState } from 'react';
-import Viewer from 'react-office-viewer';
+import { useState } from 'react';
 
 export default function HomePage() {
   const [docHtml, setDocHtml] = useState('');
-  useEffect(() => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/demo1.docx');
-    xhr.responseType = 'arraybuffer';
-    xhr.onload = function () {
-      console.log(xhr.response);
-      // renderAsync(xhr.response, document.getElementById('docx') as HTMLElement);
-      mammoth
-        .convertToHtml({ arrayBuffer: xhr.response })
+  // useEffect(() => {
+  //   const xhr = new XMLHttpRequest();
+  //   xhr.open('GET', '/demo1.docx');
+  //   xhr.responseType = 'arraybuffer';
+  //   xhr.onload = function () {
+  //     console.log(xhr.response);
+  //     // renderAsync(xhr.response, document.getElementById('docx') as HTMLElement);
+  //     mammoth
+  //       .convertToHtml({ arrayBuffer: xhr.response })
 
-        .then(function (result) {
-          console.log(result);
+  //       .then(function (result) {
+  //         console.log(result);
 
-          var html = result.value; // The generated HTML
-          setDocHtml(html);
-          var messages = result.messages; // Any messages, such as warnings during conversion
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    };
-    xhr.send();
-  }, []);
+  //         var html = result.value; // The generated HTML
+  //         setDocHtml(html);
+  //         var messages = result.messages; // Any messages, such as warnings during conversion
+  //       })
+  //       .catch(function (error) {
+  //         console.error(error);
+  //       });
+  //   };
+  //   xhr.send();
+  // }, []);
   return (
     <div>
       <h2>Yay! Welcome to umi!</h2>
-      <div
+      {/* <div
         className={'document-container'}
         style={{
           width: 100 + '%',
@@ -39,7 +37,7 @@ export default function HomePage() {
         }}
         dangerouslySetInnerHTML={{ __html: docHtml }}
       ></div>
-      <Viewer />
+      <Viewer /> */}
     </div>
   );
 }
