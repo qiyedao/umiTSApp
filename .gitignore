@@ -8,3 +8,5 @@
 /dist
 .swc
 /server
+*.docx
+*.xlsx
