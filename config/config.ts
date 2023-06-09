@@ -5,10 +5,6 @@ export default defineConfig({
     { path: '/', component: 'index' },
     { path: '/docs', component: 'docs' },
   ],
-  legacy: {
-    buildOnly: true,
-    nodeModulesTransform: true,
-  },
   npmClient: 'pnpm',
   tailwindcss: {},
   plugins: [
@@ -17,8 +13,6 @@ export default defineConfig({
     '@umijs/plugins/dist/antd',
   ],
   styledComponents: {},
-  // ssr: {},
-  // exportStatic: {},
 
   metas: [
     {
@@ -34,5 +28,4 @@ export default defineConfig({
         'width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover',
     },
   ],
-  headScripts: [{ src: 'https://unpkg.com/jszip/dist/jszip.min.js' }],
 });
