@@ -1,7 +1,9 @@
 {
+  "name": "umi4-mobile",
   "private": true,
   "author": "qiye <jiaoy169@gmail.com>",
   "scripts": {
+    "analyze": "cross-env ANALYZE=1 umi build",
     "dev": "umi dev",
     "build": "umi build",
     "postinstall": "umi setup",
