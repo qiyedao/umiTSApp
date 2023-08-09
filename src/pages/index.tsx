@@ -63,6 +63,52 @@ class App extends Component<{}, State> {
     });
   };
 
+  //  handleSavePDF = async () => {
+
+  //   const existingPdfUrl = "path/to/existing/pdf";
+  //   const existingPdfBytes = await fetch(existingPdfUrl).then((res) =>
+  //     res.arrayBuffer()
+  //   );
+
+  //   const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  //   const pages = pdfDoc.getPages();
+
+  //   highlights.forEach((highlight) => {
+  //     const { pageNumber, position, content } = highlight;
+  //     const page = pages[pageNumber - 1];
+  //     const { x, y, width, height } = position;
+
+  //     page.drawRectangle({
+  //       x,
+  //       y,
+  //       width,
+  //       height,
+  //       borderColor: rgb(1, 0, 0),
+  //       borderWidth: 1,
+  //     });
+
+  //     page.drawText(content, {
+  //       x: x + 5,
+  //       y: y + 5,
+  //       size: 10,
+  //       color: rgb(1, 0, 0),
+  //     });
+  //   });
+
+  //   const pdfBytes = await pdfDoc.save();
+
+  //   const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  //   const url = URL.createObjectURL(blob);
+
+  //   // 创建一个下载链接，并触发下载
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "highlighted_pdf.pdf";
+  //   a.click();
+
+  //   // 可以选择将新的 PDF 文件上传到服务器
+  //   // ...
+  // };
   toggleDocument = () => {
     const newUrl =
       this.state.url === PRIMARY_PDF_URL ? SECONDARY_PDF_URL : PRIMARY_PDF_URL;
