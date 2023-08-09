@@ -15,9 +15,12 @@
     "antd-mobile": "^5.30.0",
     "antd-mobile-icons": "^0.3.0",
     "axios": "^1.4.0",
+    "pdf-lib": "^1.17.1",
     "rc-util": "^5.33.0",
     "react": "18.x",
     "react-dom": "18.x",
+    "react-pdf": "^7.3.3",
+    "react-pdf-highlighter": "^6.1.0",
     "umi": "^4.0.70"
   },
   "devDependencies": {
