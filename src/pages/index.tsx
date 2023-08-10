@@ -1,5 +1,6 @@
 import { Component } from 'react';
 
+import type { IHighlight, NewHighlight } from 'react-pdf-highlighter';
 import {
   AreaHighlight,
   Highlight,
@@ -9,10 +10,6 @@ import {
   Tip,
 } from 'react-pdf-highlighter';
 
-import type { IHighlight, NewHighlight } from 'react-pdf-highlighter';
-
-import { PDFDocument, rgb } from 'pdf-lib';
-import { Sidebar } from './Sidebar';
 import { Spinner } from './Spinner';
 
 import { testHighlights as _testHighlights } from './test-highlights';
@@ -64,58 +61,7 @@ class App extends Component<{}, State> {
     });
   };
 
-  handleSavePDF = async () => {
-    const { highlights } = this.state;
-    const existingPdfUrl = PRIMARY_PDF_URL;
-    const existingPdfBytes = await fetch(existingPdfUrl).then((res) =>
-      res.arrayBuffer(),
-    );
-
-    const pdfDoc = await PDFDocument.load(existingPdfBytes);
-    console.log('pdfDoc', pdfDoc);
-
-    const pages = pdfDoc.getPages();
-    console.log('pages', pages);
-
-    highlights.forEach((highlight) => {
-      console.log('highlight', highlight);
-
-      const { position, content } = highlight;
-      const { boundingRect, pageNumber } = position;
-      const page = pages[pageNumber - 1];
-      console.log('page', page);
-
-      page.drawRectangle({
-        x: boundingRect.x1,
-        y: boundingRect.y1,
-        width: boundingRect.x2 - boundingRect.x1,
-        height: boundingRect.y2 - boundingRect.y1,
-        borderColor: rgb(1, 0, 0),
-        borderWidth: 1,
-      });
-
-      page.drawText(content.text || '', {
-        x: boundingRect.x1 + 5,
-        y: boundingRect.y1 + 5,
-        size: 10,
-        color: rgb(1, 0, 0),
-      });
-    });
-
-    const pdfBytes = await pdfDoc.save();
-
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-
-    // 创建一个下载链接，并触发下载
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'highlighted_pdf.pdf';
-    a.click();
-
-    // 可以选择将新的 PDF 文件上传到服务器
-    // ...
-  };
+  handleSavePDF = async () => {};
   toggleDocument = () => {
     const newUrl =
       this.state.url === PRIMARY_PDF_URL ? SECONDARY_PDF_URL : PRIMARY_PDF_URL;
@@ -187,96 +133,83 @@ class App extends Component<{}, State> {
     const { url, highlights } = this.state;
 
     return (
-      <div className="App" style={{ display: 'flex', height: '100vh' }}>
-        <Sidebar
-          highlights={highlights}
-          resetHighlights={this.resetHighlights}
-          toggleDocument={this.handleSavePDF}
-        />
-        <div
-          style={{
-            height: '100vh',
-            width: '75vw',
-            position: 'relative',
-          }}
-        >
-          <PdfLoader url={url} beforeLoad={<Spinner />}>
-            {(pdfDocument) => (
-              <PdfHighlighter
-                pdfDocument={pdfDocument}
-                enableAreaSelection={(event) => event.altKey}
-                onScrollChange={resetHash}
-                // pdfScaleValue="page-width"
-                scrollRef={(scrollTo) => {
-                  this.scrollViewerTo = scrollTo;
+      <div className="App">
+        <PdfLoader url={url} beforeLoad={<Spinner />}>
+          {(pdfDocument) => (
+            <PdfHighlighter
+              pdfDocument={pdfDocument}
+              enableAreaSelection={(event) => event.altKey}
+              onScrollChange={resetHash}
+              // pdfScaleValue="page-width"
+              scrollRef={(scrollTo) => {
+                this.scrollViewerTo = scrollTo;
 
-                  this.scrollToHighlightFromHash();
-                }}
-                onSelectionFinished={(
-                  position,
-                  content,
-                  hideTipAndSelection,
-                  transformSelection,
-                ) => (
-                  <Tip
-                    onOpen={transformSelection}
-                    onConfirm={(comment) => {
-                      this.addHighlight({ content, position, comment });
+                this.scrollToHighlightFromHash();
+              }}
+              onSelectionFinished={(
+                position,
+                content,
+                hideTipAndSelection,
+                transformSelection,
+              ) => (
+                <Tip
+                  onOpen={transformSelection}
+                  onConfirm={(comment) => {
+                    this.addHighlight({ content, position, comment });
 
-                      hideTipAndSelection();
+                    hideTipAndSelection();
+                  }}
+                />
+              )}
+              highlightTransform={(
+                highlight,
+                index,
+                setTip,
+                hideTip,
+                viewportToScaled,
+                screenshot,
+                isScrolledTo,
+              ) => {
+                const isTextHighlight = !Boolean(
+                  highlight.content && highlight.content.image,
+                );
+
+                const component = isTextHighlight ? (
+                  <Highlight
+                    isScrolledTo={isScrolledTo}
+                    position={highlight.position}
+                    comment={highlight.comment}
+                  />
+                ) : (
+                  <AreaHighlight
+                    isScrolledTo={isScrolledTo}
+                    highlight={highlight}
+                    onChange={(boundingRect) => {
+                      this.updateHighlight(
+                        highlight.id,
+                        { boundingRect: viewportToScaled(boundingRect) },
+                        { image: screenshot(boundingRect) },
+                      );
                     }}
                   />
-                )}
-                highlightTransform={(
-                  highlight,
-                  index,
-                  setTip,
-                  hideTip,
-                  viewportToScaled,
-                  screenshot,
-                  isScrolledTo,
-                ) => {
-                  const isTextHighlight = !Boolean(
-                    highlight.content && highlight.content.image,
-                  );
+                );
 
-                  const component = isTextHighlight ? (
-                    <Highlight
-                      isScrolledTo={isScrolledTo}
-                      position={highlight.position}
-                      comment={highlight.comment}
-                    />
-                  ) : (
-                    <AreaHighlight
-                      isScrolledTo={isScrolledTo}
-                      highlight={highlight}
-                      onChange={(boundingRect) => {
-                        this.updateHighlight(
-                          highlight.id,
-                          { boundingRect: viewportToScaled(boundingRect) },
-                          { image: screenshot(boundingRect) },
-                        );
-                      }}
-                    />
-                  );
-
-                  return (
-                    <Popup
-                      popupContent={<HighlightPopup {...highlight} />}
-                      onMouseOver={(popupContent) =>
-                        setTip(highlight, (highlight) => popupContent)
-                      }
-                      onMouseOut={hideTip}
-                      key={index}
-                      children={component}
-                    />
-                  );
-                }}
-                highlights={highlights}
-              />
-            )}
-          </PdfLoader>
-        </div>
+                return (
+                  <Popup
+                    popupContent={<HighlightPopup {...highlight} />}
+                    onMouseOver={(popupContent) =>
+                      setTip(highlight, (highlight) => popupContent)
+                    }
+                    onMouseOut={hideTip}
+                    key={index}
+                    children={component}
+                  />
+                );
+              }}
+              highlights={highlights}
+            />
+          )}
+        </PdfLoader>
       </div>
     );
   }
