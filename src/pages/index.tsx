@@ -11,6 +11,7 @@ import {
 
 import type { IHighlight, NewHighlight } from 'react-pdf-highlighter';
 
+import { PDFDocument, rgb } from 'pdf-lib';
 import { Sidebar } from './Sidebar';
 import { Spinner } from './Spinner';
 
@@ -63,52 +64,58 @@ class App extends Component<{}, State> {
     });
   };
 
-  //  handleSavePDF = async () => {
+  handleSavePDF = async () => {
+    const { highlights } = this.state;
+    const existingPdfUrl = PRIMARY_PDF_URL;
+    const existingPdfBytes = await fetch(existingPdfUrl).then((res) =>
+      res.arrayBuffer(),
+    );
 
-  //   const existingPdfUrl = "path/to/existing/pdf";
-  //   const existingPdfBytes = await fetch(existingPdfUrl).then((res) =>
-  //     res.arrayBuffer()
-  //   );
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    console.log('pdfDoc', pdfDoc);
 
-  //   const pdfDoc = await PDFDocument.load(existingPdfBytes);
-  //   const pages = pdfDoc.getPages();
+    const pages = pdfDoc.getPages();
+    console.log('pages', pages);
 
-  //   highlights.forEach((highlight) => {
-  //     const { pageNumber, position, content } = highlight;
-  //     const page = pages[pageNumber - 1];
-  //     const { x, y, width, height } = position;
+    highlights.forEach((highlight) => {
+      console.log('highlight', highlight);
 
-  //     page.drawRectangle({
-  //       x,
-  //       y,
-  //       width,
-  //       height,
-  //       borderColor: rgb(1, 0, 0),
-  //       borderWidth: 1,
-  //     });
+      const { position, content } = highlight;
+      const { boundingRect, pageNumber } = position;
+      const page = pages[pageNumber - 1];
+      console.log('page', page);
 
-  //     page.drawText(content, {
-  //       x: x + 5,
-  //       y: y + 5,
-  //       size: 10,
-  //       color: rgb(1, 0, 0),
-  //     });
-  //   });
+      page.drawRectangle({
+        x: boundingRect.x1,
+        y: boundingRect.y1,
+        width: boundingRect.x2 - boundingRect.x1,
+        height: boundingRect.y2 - boundingRect.y1,
+        borderColor: rgb(1, 0, 0),
+        borderWidth: 1,
+      });
 
-  //   const pdfBytes = await pdfDoc.save();
+      page.drawText(content.text || '', {
+        x: boundingRect.x1 + 5,
+        y: boundingRect.y1 + 5,
+        size: 10,
+        color: rgb(1, 0, 0),
+      });
+    });
 
-  //   const blob = new Blob([pdfBytes], { type: "application/pdf" });
-  //   const url = URL.createObjectURL(blob);
+    const pdfBytes = await pdfDoc.save();
 
-  //   // 创建一个下载链接，并触发下载
-  //   const a = document.createElement("a");
-  //   a.href = url;
-  //   a.download = "highlighted_pdf.pdf";
-  //   a.click();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
 
-  //   // 可以选择将新的 PDF 文件上传到服务器
-  //   // ...
-  // };
+    // 创建一个下载链接，并触发下载
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'highlighted_pdf.pdf';
+    a.click();
+
+    // 可以选择将新的 PDF 文件上传到服务器
+    // ...
+  };
   toggleDocument = () => {
     const newUrl =
       this.state.url === PRIMARY_PDF_URL ? SECONDARY_PDF_URL : PRIMARY_PDF_URL;
@@ -184,7 +191,7 @@ class App extends Component<{}, State> {
         <Sidebar
           highlights={highlights}
           resetHighlights={this.resetHighlights}
-          toggleDocument={this.toggleDocument}
+          toggleDocument={this.handleSavePDF}
         />
         <div
           style={{
