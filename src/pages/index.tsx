@@ -40,8 +40,7 @@ const HighlightPopup = ({
     </div>
   ) : null;
 
-const PRIMARY_PDF_URL = 'https://arxiv.org/pdf/1708.08021.pdf';
-const SECONDARY_PDF_URL = 'https://arxiv.org/pdf/1604.02480.pdf';
+const PRIMARY_PDF_URL = '/1708.08021.pdf';
 
 const searchParams = new URLSearchParams(document.location.search);
 
@@ -133,7 +132,7 @@ class App extends Component<{}, State> {
     const { url, highlights } = this.state;
 
     return (
-      <div className="App">
+      <div id="content_left" className="App">
         <PdfLoader url={url} beforeLoad={<Spinner />}>
           {(pdfDocument) => (
             <PdfHighlighter
